@@ -24,16 +24,17 @@
 #define MATRIX_ROWS 8
 #define MATRIX_COLS 5
 
+
 // Wiring configuration for each half.
 #define MATRIX_ROW_PINS \
-    { B7, C6, D4, B5 }
+    { F4, F5, F6, F7 }
 #define MATRIX_COL_PINS \
-    { C7, F0, D7, E6, B4 }
+    { C6, D7, E6, B4, B5 }
 
 #define MATRIX_ROW_PINS_RIGHT \
-    { F0, C6, D4, B5 }
+    { F4, F5, F6, F7 }
 #define MATRIX_COL_PINS_RIGHT \
-    { C7, B7, D7, E6, B4 }
+    { C6, D7, E6, B4, B5 }
 
 #define DIODE_DIRECTION ROW2COL
 
@@ -53,7 +54,7 @@
 #define DEBOUNCE 5
 
 /* PMW3360 settings. */
-#define PMW3360_CS_PIN B0
+#define PMW3360_CS_PIN B6
 
 // Trackball angle adjustment.
 #define ROTATIONAL_TRANSFORM_ANGLE -25
