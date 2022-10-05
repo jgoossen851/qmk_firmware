@@ -36,7 +36,7 @@
 #define MATRIX_COL_PINS_RIGHT \
     { C6, D7, E6, B4, B5 }
 
-#define DIODE_DIRECTION ROW2COL
+#define DIODE_DIRECTION COL2ROW
 
 /* Handedness. */
 #define MASTER_RIGHT
@@ -56,7 +56,7 @@
 /* PMW3389 settings. */
 #define PMW3389_CS_PIN B6
 
-// Trackball angle adjustment.
+// Trackball angle adjustment CCW in x-y plane.
 #define ROTATIONAL_TRANSFORM_ANGLE -25
 
 /* RGB settings. */
