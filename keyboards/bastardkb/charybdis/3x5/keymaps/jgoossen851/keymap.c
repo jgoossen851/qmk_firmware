@@ -63,9 +63,17 @@ static uint16_t auto_pointer_layer_timer = 0;
                       ESC_MED, SPC_NAV, TAB_PTR, BSP_SYM, ENT_NUM
 
 /** Convenience row shorthands. */
-#define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ______________HOME_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
-#define ______________HOME_ROW_GACS_R______________ XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI
+#define _REDO   LCTL(KC_T)
+#define _PASTE  LCTL(KC_DOT)
+#define _COPY   LCTL(KC_I)
+#define _CUT    LCTL(KC_B)
+#define _UNDO   LCTL(KC_SLSH)
+
+#define _______________DEAD_HALF_ROW_______________  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ______________HOME_ROW_GACS_L______________  KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
+#define ______________HOME_ROW_GACS_R______________  XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI
+#define ________________CLIPBOARD_L________________    _UNDO,    _CUT,   _COPY,  _PASTE,   _REDO
+#define ________________CLIPBOARD_R________________    _REDO,  _PASTE,   _COPY,    _CUT,   _UNDO
 
 /*
  * Layers used on the Charybdis Nano.
@@ -88,28 +96,25 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NAVIGATION                                                                \
     _______________DEAD_HALF_ROW_______________,   KC_INS, KC_HOME,   KC_UP,  KC_END, KC_PGUP, \
     ______________HOME_ROW_GACS_L______________,  KC_CLCK, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, \
-    _______________DEAD_HALF_ROW_______________,  _______________DEAD_HALF_ROW_______________, \
+    _______________DEAD_HALF_ROW_______________,  ________________CLIPBOARD_R________________, \
                       XXXXXXX, _______, XXXXXXX,  KC_BSPC, KC_ENT
 
-/**
- * \brief Function layer.
+/** \brief Mouse emulation and pointer functions. 
  *
- * Secondary right-hand layer has function keys mirroring the numerals on the
- * primary layer with extras on the pinkie column, plus system keys on the inner
- * column. App is on the tertiary thumb key and other thumb keys are duplicated
- * from the base layer to enable auto-repeat.
+ * Secondary right-hand layer
  */
-#define LAYOUT_LAYER_FUNCTION                                                                 \
-    _______________DEAD_HALF_ROW_______________,  KC_PSCR,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
-    ______________HOME_ROW_GACS_L______________,  KC_SLCK,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
-    _______________DEAD_HALF_ROW_______________,  KC_PAUS,   KC_F1,   KC_F2,   KC_F3,  KC_F10, \
-                      XXXXXXX, XXXXXXX, _______,  XXXXXXX, XXXXXXX
+#define LAYOUT_LAYER_POINTER                                                                  \
+    DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, XXXXXXX, DRGSCRL, XXXXXXX, KC_WH_U, \
+    ______________HOME_ROW_GACS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
+    XXXXXXX, DRGSCRL, SNIPING, EEP_RST, QK_BOOT,  ________________CLIPBOARD_R________________, \
+                      XXXXXXX, XXXXXXX, _______,   KC_DEL, XXXXXXX
 
 /**
  * \brief Media layer.
  *
  * Tertiary left- and right-hand layer is media and RGB control.  This layer is
  * symmetrical to accomodate the left- and right-hand trackball.
+
  */
 #define LAYOUT_LAYER_MEDIA                                                                    \
     XXXXXXX,RGB_RMOD, RGB_TOG, RGB_MOD, XXXXXXX, XXXXXXX,RGB_RMOD, RGB_TOG, RGB_MOD, XXXXXXX, \
@@ -117,12 +122,6 @@ static uint16_t auto_pointer_layer_timer = 0;
     XXXXXXX, XXXXXXX, XXXXXXX, EEP_RST,   QK_BOOT,   QK_BOOT, EEP_RST, XXXXXXX, XXXXXXX, XXXXXXX, \
                       _______, KC_MPLY, KC_MSTP, KC_MSTP, KC_MPLY
 
-/** \brief Mouse emulation and pointer functions. */
-#define LAYOUT_LAYER_POINTER                                                                  \
-    XXXXXXX, XXXXXXX, XXXXXXX, DPI_MOD, S_D_MOD, S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, \
-    ______________HOME_ROW_GACS_L______________, ______________HOME_ROW_GACS_R______________, \
-    _______, DRGSCRL, SNIPING, EEP_RST,   QK_BOOT,   QK_BOOT, EEP_RST, SNIPING, DRGSCRL, _______, \
-                      KC_BTN2, KC_BTN1, KC_BTN3, KC_BTN3, KC_BTN1
 
 /**
  * \brief Numeral layout.
@@ -156,10 +155,25 @@ static uint16_t auto_pointer_layer_timer = 0;
  * 
  */
 #define LAYOUT_LAYER_BUTTON                                                                   \
-    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, _______________DEAD_HALF_ROW_______________, \
-    KC_COLN,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS, ______________HOME_ROW_GACS_R______________, \
-    KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE, _______________DEAD_HALF_ROW_______________, \
-                      KC_LPRN, KC_RPRN, KC_UNDS, _______, XXXXXXX
+    ________________CLIPBOARD_L________________,  ________________CLIPBOARD_R________________, \
+    ______________HOME_ROW_GACS_L______________,  ______________HOME_ROW_GACS_R______________, \
+    ________________CLIPBOARD_L________________,  ________________CLIPBOARD_R________________, \
+                      XXXXXXX, KC_BTN1, KC_BTN2,  _______, XXXXXXX
+
+
+/**
+ * \brief Function layer.
+ *
+ * Secondary right-hand layer has function keys mirroring the numerals on the
+ * primary layer with extras on the pinkie column, plus system keys on the inner
+ * column. App is on the tertiary thumb key and other thumb keys are duplicated
+ * from the base layer to enable auto-repeat.
+ */
+#define LAYOUT_LAYER_FUNCTION                                                                 \
+    _______________DEAD_HALF_ROW_______________,  KC_PSCR,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
+    ______________HOME_ROW_GACS_L______________,  KC_SLCK,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
+    _______________DEAD_HALF_ROW_______________,  KC_PAUS,   KC_F1,   KC_F2,   KC_F3,  KC_F10, \
+                      XXXXXXX, XXXXXXX, _______,  XXXXXXX, XXXXXXX
 
 /**
  * \brief Add Home Row mod to a layout.
@@ -183,14 +197,14 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define HOME_ROW_MOD_GACS(...) _HOME_ROW_MOD_GACS(__VA_ARGS__)
 
 /**
- * \brief Add pointer layer keys to a layout.
+ * \brief Add button layer keys to a layout.
  *
  * Expects a 10-key per row layout.  The layout passed in parameter must contain
  * at least 30 keycodes.
  *
  * This is meant to be used with `LAYER_ALPHAS_QWERTY` defined above, eg.:
  *
- *     POINTER_MOD(LAYER_ALPHAS_QWERTY)
+ *     BUTTON_MOD(LAYER_ALPHAS_QWERTY)
  */
 #define _BUTTON_MOD(                                                  \
     L00, L01, L02, L03, L04, R05, R06, R07, R08, R09,                  \
