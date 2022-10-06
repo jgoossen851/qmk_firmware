@@ -22,6 +22,7 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
+    LAYER_BUTTON,
     LAYER_FUNCTION,
     LAYER_NAVIGATION,
     LAYER_MEDIA,
@@ -45,12 +46,13 @@ static uint16_t auto_pointer_layer_timer = 0;
 #    endif  // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
 #endif      // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
-#define ESC_MED LT(LAYER_MEDIA, KC_ESC)
 #define SPC_NAV LT(LAYER_NAVIGATION, KC_SPC)
-#define TAB_FUN LT(LAYER_FUNCTION, KC_TAB)
-#define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
-#define BSP_NUM LT(LAYER_NUMERAL, KC_BSPC)
-#define _L_PTR(KC) LT(LAYER_POINTER, KC)
+#define TAB_PTR LT(LAYER_POINTER, KC_TAB)
+#define ESC_MED LT(LAYER_MEDIA, KC_ESC)
+// #define TAB_FUN LT(LAYER_FUNCTION, KC_TAB)
+#define ENT_NUM LT(LAYER_NUMERAL, KC_ENT)
+#define BSP_SYM LT(LAYER_SYMBOLS, KC_BSPC)
+#define _L_BTN(KC) LT(LAYER_BUTTON, KC)
 
 // clang-format off
 /** \brief QWERTY layout (3 rows, 10 columns). */
@@ -58,7 +60,7 @@ static uint16_t auto_pointer_layer_timer = 0;
        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, \
        KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_COLN, \
        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, \
-                      ESC_MED, SPC_NAV, TAB_FUN, ENT_SYM, BSP_NUM
+                      ESC_MED, SPC_NAV, TAB_PTR, BSP_SYM, ENT_NUM
 
 /** Convenience row shorthands. */
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -76,6 +78,20 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 
 /**
+ * \brief Navigation layer.
+ *
+ * Primary right-hand layer (left home thumb) is navigation and editing. Cursor
+ * keys are on the home position, line and page movement below, clipboard above,
+ * caps lock and insert on the inner column. Thumb keys are duplicated from the
+ * base layer to avoid having to layer change mid edit and to enable auto-repeat.
+ */
+#define LAYOUT_LAYER_NAVIGATION                                                                \
+    _______________DEAD_HALF_ROW_______________,   KC_INS, KC_HOME,   KC_UP,  KC_END, KC_PGUP, \
+    ______________HOME_ROW_GACS_L______________,  KC_CLCK, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, \
+    _______________DEAD_HALF_ROW_______________,  _______________DEAD_HALF_ROW_______________, \
+                      XXXXXXX, _______, XXXXXXX,  KC_BSPC, KC_ENT
+
+/**
  * \brief Function layer.
  *
  * Secondary right-hand layer has function keys mirroring the numerals on the
@@ -84,10 +100,10 @@ static uint16_t auto_pointer_layer_timer = 0;
  * from the base layer to enable auto-repeat.
  */
 #define LAYOUT_LAYER_FUNCTION                                                                 \
-    _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
-    ______________HOME_ROW_GACS_L______________, KC_SLCK,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
-    _______________DEAD_HALF_ROW_______________, KC_PAUS,   KC_F1,   KC_F2,   KC_F3,  KC_F10, \
-                      XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
+    _______________DEAD_HALF_ROW_______________,  KC_PSCR,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
+    ______________HOME_ROW_GACS_L______________,  KC_SLCK,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
+    _______________DEAD_HALF_ROW_______________,  KC_PAUS,   KC_F1,   KC_F2,   KC_F3,  KC_F10, \
+                      XXXXXXX, XXXXXXX, _______,  XXXXXXX, XXXXXXX
 
 /**
  * \brief Media layer.
@@ -107,20 +123,6 @@ static uint16_t auto_pointer_layer_timer = 0;
     ______________HOME_ROW_GACS_L______________, ______________HOME_ROW_GACS_R______________, \
     _______, DRGSCRL, SNIPING, EEP_RST,   QK_BOOT,   QK_BOOT, EEP_RST, SNIPING, DRGSCRL, _______, \
                       KC_BTN2, KC_BTN1, KC_BTN3, KC_BTN3, KC_BTN1
-
-/**
- * \brief Navigation layer.
- *
- * Primary right-hand layer (left home thumb) is navigation and editing. Cursor
- * keys are on the home position, line and page movement below, clipboard above,
- * caps lock and insert on the inner column. Thumb keys are duplicated from the
- * base layer to avoid having to layer change mid edit and to enable auto-repeat.
- */
-#define LAYOUT_LAYER_NAVIGATION                                                               \
-    _______________DEAD_HALF_ROW_______________, _______________DEAD_HALF_ROW_______________, \
-    ______________HOME_ROW_GACS_L______________, KC_CLCK, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
-    _______________DEAD_HALF_ROW_______________,  KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
-                      XXXXXXX, _______, XXXXXXX,  KC_ENT, KC_BSPC
 
 /**
  * \brief Numeral layout.
@@ -143,6 +145,17 @@ static uint16_t auto_pointer_layer_timer = 0;
  * `KC_RPRN`.
  */
 #define LAYOUT_LAYER_SYMBOLS                                                                  \
+    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, _______________DEAD_HALF_ROW_______________, \
+    KC_COLN,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS, ______________HOME_ROW_GACS_R______________, \
+    KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE, _______________DEAD_HALF_ROW_______________, \
+                      KC_LPRN, KC_RPRN, KC_UNDS, _______, XXXXXXX
+
+/**
+ * \brief Button layer.
+ *
+ * 
+ */
+#define LAYOUT_LAYER_BUTTON                                                                   \
     KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, _______________DEAD_HALF_ROW_______________, \
     KC_COLN,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS, ______________HOME_ROW_GACS_R______________, \
     KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE, _______________DEAD_HALF_ROW_______________, \
@@ -179,7 +192,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  *
  *     POINTER_MOD(LAYER_ALPHAS_QWERTY)
  */
-#define _POINTER_MOD(                                                  \
+#define _BUTTON_MOD(                                                  \
     L00, L01, L02, L03, L04, R05, R06, R07, R08, R09,                  \
     L10, L11, L12, L13, L14, R15, R16, R17, R18, R19,                  \
     L20, L21, L22, L23, L24, R25, R26, R27, R28, R29,                  \
@@ -188,18 +201,19 @@ static uint16_t auto_pointer_layer_timer = 0;
              R05,         R06,         R07,         R08,         R09,  \
              L10,         L11,         L12,         L13,         L14,  \
              R15,         R16,         R17,         R18,         R19,  \
-      _L_PTR(L20),        L21,         L22,         L23,         L24,  \
-             R25,         R26,         R27,         R28,  _L_PTR(R29), \
+      _L_BTN(L20),        L21,         L22,         L23,         L24,  \
+             R25,         R26,         R27,         R28,  _L_BTN(R29), \
       __VA_ARGS__
-#define POINTER_MOD(...) _POINTER_MOD(__VA_ARGS__)
+#define BUTTON_MOD(...) _BUTTON_MOD(__VA_ARGS__)
 
 #define LAYOUT_wrapper(...) LAYOUT_charybdis_3x5(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT_wrapper(
-    POINTER_MOD(HOME_ROW_MOD_GACS(LAYOUT_LAYER_BASE))
+    BUTTON_MOD(HOME_ROW_MOD_GACS(LAYOUT_LAYER_BASE))
   ),
   [LAYER_FUNCTION] = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
+  [LAYER_BUTTON] = LAYOUT_wrapper(LAYOUT_LAYER_BUTTON),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_MEDIA] = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
   [LAYER_NUMERAL] = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
