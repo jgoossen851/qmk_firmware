@@ -54,6 +54,9 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define BSP_SYM LT(LAYER_SYMBOLS, KC_BSPC)
 #define _L_BTN(KC) LT(LAYER_BUTTON, KC)
 
+#define LK_BASE DF(LAYER_BASE)
+#define LK_PTR DF(LAYER_POINTER)
+
 // clang-format off
 /** \brief QWERTY layout (3 rows, 10 columns). */
 #define LAYOUT_LAYER_BASE                                                                     \
@@ -104,9 +107,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  * Secondary right-hand layer
  */
 #define LAYOUT_LAYER_POINTER                                                                  \
-    DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, XXXXXXX, DRGSCRL, XXXXXXX, KC_WH_U, \
+    DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
     ______________HOME_ROW_GACS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
-    XXXXXXX, DRGSCRL, SNIPING, EEP_RST, QK_BOOT,  ________________CLIPBOARD_R________________, \
+    XXXXXXX, LK_BASE,  LK_PTR, XXXXXXX, XXXXXXX,  ________________CLIPBOARD_R________________, \
                       XXXXXXX, XXXXXXX, _______,   KC_DEL, XXXXXXX
 
 /**
