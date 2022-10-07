@@ -75,8 +75,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 #define ___X________X__DEAD_HALF_ROW__X________X___  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define ___X_______DEAD_KEYS_IV_______X___           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define          ______HOME_ROW_ACS_L______________           KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
-#define _______________HOME_ROW_ACS_R_____           XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT
+#define          _____HOME_ROW_MODS_L______________           KC_LALT, KC_LCTL, KC_LSFT, KC_RALT
+#define ______________HOME_ROW_MODS_R_____           KC_RALT, KC_LSFT, KC_LCTL, KC_LALT
 #define ________________CLIPBOARD_L________________    _UNDO,    _CUT,   _COPY,  _PASTE,   _REDO
 #define ________________CLIPBOARD_R________________    _REDO,  _PASTE,   _COPY,    _CUT,   _UNDO
 
@@ -100,7 +100,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_NAVIGATION                                                                \
     ___X________X__DEAD_HALF_ROW__X________X___,   KC_INS, KC_HOME,   KC_UP,  KC_END, KC_PGUP, \
-    XXXXXXX, ______HOME_ROW_ACS_L______________,  KC_CLCK, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, \
+    XXXXXXX, _____HOME_ROW_MODS_L______________,  KC_CLCK, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, \
     KC_LGUI, ___X_______DEAD_KEYS_IV_______X___,  ________________CLIPBOARD_R________________, \
                       XXXXXXX, _______, XXXXXXX,   KC_ENT, KC_BSPC
 
@@ -110,7 +110,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_POINTER                                                                   \
     DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
-    XXXXXXX, ______HOME_ROW_ACS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
+    XXXXXXX, _____HOME_ROW_MODS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
     KC_LGUI, LK_BASE,  LK_PTR, XXXXXXX, XXXXXXX,  ________________CLIPBOARD_R________________, \
                       XXXXXXX, XXXXXXX, _______,  XXXXXXX,  KC_DEL
 
@@ -137,7 +137,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_NUMERAL                                                                   \
     KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    KC_SLSH,    KC_4,    KC_5,    KC_6,  KC_EQL,  _______________HOME_ROW_ACS_R_____, XXXXXXX, \
+    KC_SLSH,    KC_4,    KC_5,    KC_6,  KC_EQL,  ______________HOME_ROW_MODS_R_____, XXXXXXX, \
      KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  ___X_______DEAD_KEYS_IV_______X___, KC_LGUI, \
                        KC_DOT,    KC_0, KC_MINS,  XXXXXXX, _______
 
@@ -150,7 +150,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_SYMBOLS                                                                   \
     KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    KC_QUES,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,  _______________HOME_ROW_ACS_R_____, XXXXXXX, \
+    KC_QUES,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,  ______________HOME_ROW_MODS_R_____, XXXXXXX, \
     KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE,  ___X_______DEAD_KEYS_IV_______X___, KC_LGUI, \
                       KC_LPRN, KC_RPRN, KC_UNDS,  _______, XXXXXXX
 
@@ -161,7 +161,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_POINTER2                                                                  \
     DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
-    XXXXXXX, ______HOME_ROW_ACS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
+    XXXXXXX, _____HOME_ROW_MODS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
     ________________CLIPBOARD_L________________,  ________________CLIPBOARD_R________________, \
                       XXXXXXX, KC_BTN1, KC_BTN2,  XXXXXXX, XXXXXXX
 
@@ -176,7 +176,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_FUNCTION                                                                  \
     ___X________X__DEAD_HALF_ROW__X________X___,  KC_PSCR,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
-    XXXXXXX, ______HOME_ROW_ACS_L______________,  KC_SLCK,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
+    XXXXXXX, _____HOME_ROW_MODS_L______________,  KC_SLCK,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
     KC_LGUI, ___X_______DEAD_KEYS_IV_______X___,  KC_PAUS,   KC_F1,   KC_F2,   KC_F3,  KC_F10, \
                       XXXXXXX, XXXXXXX, _______,  XXXXXXX, XXXXXXX
 
@@ -197,8 +197,8 @@ static uint16_t auto_pointer_layer_timer = 0;
     ...)                                                               \
              L00,         L01,         L02,         L03,         L04,  \
              R05,         R06,         R07,         R08,         R09,  \
-             L10,  LALT_T(L11), LCTL_T(L12), LSFT_T(L13),        L14,  \
-             R15,  RSFT_T(R16), RCTL_T(R17), LALT_T(R18),        R19, \
+             L10,  LALT_T(L11), LCTL_T(L12), LSFT_T(L13), RALT_T(L14), \
+      RALT_T(R15), RSFT_T(R16), RCTL_T(R17), LALT_T(R18),        R19,  \
       LGUI_T(L20),        L21,         L22,         L23,         L24,  \
              R25,         R26,         R27,         R28,  RGUI_T(R29), \
       __VA_ARGS__
