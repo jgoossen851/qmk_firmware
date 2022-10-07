@@ -32,7 +32,8 @@ enum charybdis_keymap_layers {
 };
 
 // Automatically enable sniping-mode on the pointer layer.
-#define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
+#define LAYER_MASK(layer) ((layer_state_t)1 << layer)
+#define CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK LAYER_MASK(LAYER_POINTER) | LAYER_MASK(LAYER_POINTER2)
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 static uint16_t auto_pointer_layer_timer = 0;
@@ -267,13 +268,12 @@ void matrix_scan_kb(void) {
 }
 #    endif  // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
-#    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
-layer_state_t layer_state_set_kb(layer_state_t state) {
-    state = layer_state_set_user(state);
-    charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
+#    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK
+layer_state_t layer_state_set_user(layer_state_t state) {
+    charybdis_set_pointer_sniping_enabled(state & (CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK));
     return state;
-}
-#    endif  // CHARYBDIS_AUTO_SNIPING_ON_LAYER
+}   
+#    endif  // CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK
 #endif      // POINTING_DEVICE_ENABLE
 
 #ifdef RGB_MATRIX_ENABLE
