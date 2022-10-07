@@ -50,20 +50,20 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define TAB_PTR LT(LAYER_POINTER, KC_TAB)
 #define ESC_MED LT(LAYER_MEDIA, KC_ESC)
 // #define TAB_FUN LT(LAYER_FUNCTION, KC_TAB)
-#define ENT_NUM LT(LAYER_NUMERAL, KC_ENT)
-#define BSP_SYM LT(LAYER_SYMBOLS, KC_BSPC)
+#define BSP_NUM LT(LAYER_NUMERAL, KC_BSPC)
+#define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
 #define _L_BTN(KC) LT(LAYER_BUTTON, KC)
 
 #define LK_BASE DF(LAYER_BASE)
 #define LK_PTR DF(LAYER_POINTER)
 
 // clang-format off
-/** \brief QWERTY layout (3 rows, 10 columns). */
+/** \brief Dvorak layout (3 rows, 10 columns). */
 #define LAYOUT_LAYER_BASE                                                                          \
         KC_COLN, KC_COMM,  KC_DOT,    KC_P,    KC_Y,     KC_F,    KC_G,    KC_C,    KC_R,    KC_L, \
            KC_A,    KC_O,    KC_E,    KC_U,    KC_I,     KC_D,    KC_H,    KC_T,    KC_N,    KC_S, \
         KC_QUOT,    KC_Q,    KC_J,    KC_K,    KC_X,     KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, \
-                          ESC_MED, SPC_NAV, TAB_PTR,  BSP_SYM, ENT_NUM
+                          ESC_MED, SPC_NAV, TAB_PTR,  ENT_SYM, BSP_NUM
 
 /** Convenience row shorthands. */
 #define _REDO   LCTL(KC_Y)
@@ -100,7 +100,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     _______________DEAD_HALF_ROW_______________,   KC_INS, KC_HOME,   KC_UP,  KC_END, KC_PGUP, \
     ______________HOME_ROW_GACS_L______________,  KC_CLCK, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, \
     _______________DEAD_HALF_ROW_______________,  ________________CLIPBOARD_R________________, \
-                      XXXXXXX, _______, XXXXXXX,  KC_BSPC, KC_ENT
+                      XXXXXXX, _______, XXXXXXX,   KC_ENT, KC_BSPC
 
 /** \brief Mouse emulation and pointer functions. 
  *
@@ -110,7 +110,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
     ______________HOME_ROW_GACS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
     XXXXXXX, LK_BASE,  LK_PTR, XXXXXXX, XXXXXXX,  ________________CLIPBOARD_R________________, \
-                      XXXXXXX, XXXXXXX, _______,   KC_DEL, XXXXXXX
+                      XXXXXXX, XXXXXXX, _______,  XXXXXXX,  KC_DEL
 
 /**
  * \brief Media layer.
