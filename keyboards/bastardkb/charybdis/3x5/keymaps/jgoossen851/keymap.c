@@ -22,7 +22,7 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
-    LAYER_BUTTON,
+    LAYER_POINTER2,
     LAYER_FUNCTION,
     LAYER_NAVIGATION,
     LAYER_MEDIA,
@@ -52,7 +52,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 // #define TAB_FUN LT(LAYER_FUNCTION, KC_TAB)
 #define BSP_NUM LT(LAYER_NUMERAL, KC_BSPC)
 #define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
-#define _L_BTN(KC) LT(LAYER_BUTTON, KC)
+#define _L_BTN(KC) LT(LAYER_POINTER2, KC)
 
 #define LK_BASE DF(LAYER_BASE)
 #define LK_PTR DF(LAYER_POINTER)
@@ -153,15 +153,15 @@ static uint16_t auto_pointer_layer_timer = 0;
                       KC_LPRN, KC_RPRN, KC_UNDS, _______, XXXXXXX
 
 /**
- * \brief Button layer.
+ * \brief Mouse emulation and pointer functions.
  *
  * 
  */
-#define LAYOUT_LAYER_BUTTON                                                                   \
+#define LAYOUT_LAYER_POINTER2                                                                  \
+    DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
+    ______________HOME_ROW_GACS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
     ________________CLIPBOARD_L________________,  ________________CLIPBOARD_R________________, \
-    ______________HOME_ROW_GACS_L______________,  ______________HOME_ROW_GACS_R______________, \
-    ________________CLIPBOARD_L________________,  ________________CLIPBOARD_R________________, \
-                      XXXXXXX, KC_BTN1, KC_BTN2,  _______, XXXXXXX
+                      XXXXXXX, KC_BTN1, KC_BTN2,  XXXXXXX, XXXXXXX
 
 
 /**
@@ -230,7 +230,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     BUTTON_MOD(HOME_ROW_MOD_GACS(LAYOUT_LAYER_BASE))
   ),
   [LAYER_FUNCTION] = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
-  [LAYER_BUTTON] = LAYOUT_wrapper(LAYOUT_LAYER_BUTTON),
+  [LAYER_POINTER2] = LAYOUT_wrapper(LAYOUT_LAYER_POINTER2),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_MEDIA] = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
   [LAYER_NUMERAL] = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
