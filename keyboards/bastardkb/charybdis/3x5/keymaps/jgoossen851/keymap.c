@@ -188,7 +188,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     S(KC_C), KC_KP_7, KC_KP_8, KC_KP_9, S(KC_F),  XXXXXXX, KC_BSPC,  KC_DEL, XXXXXXX, XXXXXXX, \
     S(KC_B), KC_KP_4, KC_KP_5, KC_KP_6, S(KC_E),  ___X_______DEAD_KEYS_IV_______X___, _______, \
     S(KC_A), KC_KP_1, KC_KP_2, KC_KP_3, S(KC_D),  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
-                      KC_LPRN, KC_RPRN, KC_UNDS,  XXXXXXX, _______
+                      KC_PDOT, KC_KP_0, KC_PENT,  XXXXXXX, _______
 
 /**
  * \brief Function layer.
