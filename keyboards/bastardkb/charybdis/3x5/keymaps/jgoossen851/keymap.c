@@ -32,6 +32,7 @@ enum charybdis_keymap_layers {
     LAYER_NAVIGATION,
     LAYER_POINTER,
     LAYER_MEDIA,
+    LAYER_ALT_SYMBOLS,
     LAYER_NUMERAL,
     LAYER_SYMBOLS,
     LAYER_NUMPAD,
@@ -57,10 +58,10 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define SPC_NAV LT(LAYER_NAVIGATION, KC_SPC)
 #define TAB_PTR LT(LAYER_POINTER, KC_TAB)
 #define ESC_MED LT(LAYER_MEDIA, KC_ESC)
-// #define TAB_FUN LT(LAYER_FUNCTION, KC_TAB)
 #define BSP_NUM LT(LAYER_NUMERAL, KC_BSPC)
 #define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
 #define DEL_NPD LT(LAYER_NUMPAD, KC_DEL)
+#define ALT_LAY MO(LAYER_ALT_SYMBOLS)
 #define FCN_LAY MO(LAYER_FUNCTION)
 #define NPD_LAY MO(LAYER_NUMPAD)
 #define _L_BTN(KC) LT(LAYER_POINTER, KC)
@@ -121,7 +122,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
     XXXXXXX, _____HOME_ROW_MODS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
     KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
-                      XXXXXXX, KC_BTN1, KC_BTN2,  FCN_LAY, DEL_NPD
+                      ALT_LAY, KC_BTN1, KC_BTN2,  FCN_LAY, DEL_NPD
 
 /**
  * \brief Media layer.
@@ -130,10 +131,22 @@ static uint16_t auto_pointer_layer_timer = 0;
 
  */
 #define LAYOUT_LAYER_MEDIA                                                                     \
-    EEP_RST, ___X_______DEAD_KEYS_IV_______X___,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    ___X________X__DEAD_HALF_ROW__X________X___,  KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, \
-    XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK, QK_BOOT,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    EEP_RST, ___X_______DEAD_KEYS_IV_______X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    ALT_LAY, ___X_______DEAD_KEYS_IV_______X___,  KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, \
+    XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK, QK_BOOT,  ___X________X__DEAD_HALF_ROW__X________X___, \
                       _______, XXXXXXX, XXXXXXX,  KC_MSTP, KC_MPLY
+
+
+/**
+ * \brief Alternative Symbol layer.
+ *
+ * Quaternary right-hand layer is more symbols.
+ */
+#define LAYOUT_LAYER_ALT_SYMBOLS                                                               \
+    ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    XXXXXXX, _____HOME_ROW_MODS_L______________,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
+                      _______, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX
 
 
 /**
@@ -247,6 +260,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_POINTER] = LAYOUT_wrapper(LAYOUT_LAYER_POINTER),
   [LAYER_MEDIA] = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
+  [LAYER_ALT_SYMBOLS] = LAYOUT_wrapper(LAYOUT_LAYER_ALT_SYMBOLS),
   [LAYER_NUMERAL] = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
   [LAYER_SYMBOLS] = LAYOUT_wrapper(LAYOUT_LAYER_SYMBOLS),
   [LAYER_NUMPAD] = LAYOUT_wrapper(LAYOUT_LAYER_NUMPAD),
