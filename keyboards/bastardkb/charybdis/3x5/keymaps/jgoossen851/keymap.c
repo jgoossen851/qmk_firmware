@@ -119,8 +119,8 @@ static uint16_t auto_pointer_layer_timer = 0;
  * Secondary right-hand layer
  */
 #define LAYOUT_LAYER_POINTER                                                                   \
-    DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
-    XXXXXXX, _____HOME_ROW_MODS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
+    KC_WH_U, DPI_MOD, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
+    KC_WH_D, _____HOME_ROW_MODS_L______________,  CAPSWRD, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
     KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
                       ALT_LAY, KC_BTN1, KC_BTN2,  FCN_LAY, DEL_NPD
 
@@ -170,7 +170,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  * `KC_RPRN`.
  */
 #define LAYOUT_LAYER_SYMBOLS                                                                   \
-    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,  XXXXXXX, KC_BSPC,  KC_DEL, XXXXXXX, XXXXXXX, \
     KC_QUES,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,  ______________HOME_ROW_MODS_R_____, FCN_LAY, \
     KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
                       KC_LPRN, KC_RPRN, KC_UNDS,  _______, XXXXXXX
@@ -187,7 +187,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NUMPAD                                                                    \
     S(KC_C), KC_KP_7, KC_KP_8, KC_KP_9, S(KC_F),  XXXXXXX, KC_BSPC,  KC_DEL, XXXXXXX, XXXXXXX, \
     S(KC_B), KC_KP_4, KC_KP_5, KC_KP_6, S(KC_E),  ___X_______DEAD_KEYS_IV_______X___, _______, \
-    S(KC_A), KC_KP_1, KC_KP_2, KC_KP_3, S(KC_D),  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
+    S(KC_A), KC_KP_1, KC_KP_2, KC_KP_3, S(KC_D),  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, XXXXXXX, \
                       KC_PDOT, KC_KP_0, KC_PENT,  XXXXXXX, _______
 
 /**
