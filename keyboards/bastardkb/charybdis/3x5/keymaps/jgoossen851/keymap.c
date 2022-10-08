@@ -29,7 +29,6 @@ enum custom_keycodes {
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
-    LAYER_POINTER2,
     LAYER_FUNCTION,
     LAYER_NAVIGATION,
     LAYER_MEDIA,
@@ -40,7 +39,7 @@ enum charybdis_keymap_layers {
 
 // Automatically enable sniping-mode on the pointer layer.
 #define LAYER_MASK(layer) ((layer_state_t)1 << layer)
-#define CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK LAYER_MASK(LAYER_POINTER) | LAYER_MASK(LAYER_POINTER2)
+#define CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK LAYER_MASK(LAYER_POINTER)
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 static uint16_t auto_pointer_layer_timer = 0;
@@ -60,7 +59,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 // #define TAB_FUN LT(LAYER_FUNCTION, KC_TAB)
 #define BSP_NUM LT(LAYER_NUMERAL, KC_BSPC)
 #define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
-#define _L_BTN(KC) LT(LAYER_POINTER2, KC)
+#define _L_BTN(KC) LT(LAYER_POINTER, KC)
 
 // clang-format off
 /** \brief Dvorak layout (3 rows, 10 columns). */
@@ -105,7 +104,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NAVIGATION                                                                \
     ___X________X__DEAD_HALF_ROW__X________X___,   KC_INS, KC_HOME,   KC_UP,  KC_END, KC_PGUP, \
     XXXXXXX, _____HOME_ROW_MODS_L______________,  KC_CLCK, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, \
-    KC_LGUI, ___X_______DEAD_KEYS_IV_______X___,  ________________CLIPBOARD_R________________, \
+    KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
                       XXXXXXX, _______, XXXXXXX,   KC_ENT, KC_BSPC
 
 /** \brief Mouse emulation and pointer functions. 
@@ -116,7 +115,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
     XXXXXXX, _____HOME_ROW_MODS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
     KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
-                      XXXXXXX, XXXXXXX, _______,  XXXXXXX,  KC_DEL
+                      XXXXXXX, KC_BTN1, KC_BTN2,  XXXXXXX,  KC_DEL
 
 /**
  * \brief Media layer.
@@ -142,7 +141,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NUMERAL                                                                   \
     KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,  ___X________X__DEAD_HALF_ROW__X________X___, \
     KC_SLSH,    KC_4,    KC_5,    KC_6,  KC_EQL,  ______________HOME_ROW_MODS_R_____, XXXXXXX, \
-     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  ___X_______DEAD_KEYS_IV_______X___, KC_LGUI, \
+     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
                        KC_DOT,    KC_0, KC_MINS,  XXXXXXX, _______
 
 /**
@@ -155,20 +154,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_SYMBOLS                                                                   \
     KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,  ___X________X__DEAD_HALF_ROW__X________X___, \
     KC_QUES,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,  ______________HOME_ROW_MODS_R_____, XXXXXXX, \
-    KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE,  ___X_______DEAD_KEYS_IV_______X___, KC_LGUI, \
+    KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
                       KC_LPRN, KC_RPRN, KC_UNDS,  _______, XXXXXXX
-
-/**
- * \brief Mouse emulation and pointer functions.
- *
- * 
- */
-#define LAYOUT_LAYER_POINTER2                                                                  \
-    DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
-    XXXXXXX, _____HOME_ROW_MODS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
-    ________________CLIPBOARD_L________________,  ________________CLIPBOARD_R________________, \
-                      XXXXXXX, KC_BTN1, KC_BTN2,  XXXXXXX, XXXXXXX
-
 
 /**
  * \brief Function layer.
@@ -236,7 +223,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     BUTTON_MOD(HOME_ROW_MOD_GACS(LAYOUT_LAYER_BASE))
   ),
   [LAYER_FUNCTION] = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
-  [LAYER_POINTER2] = LAYOUT_wrapper(LAYOUT_LAYER_POINTER2),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_MEDIA] = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
   [LAYER_NUMERAL] = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
