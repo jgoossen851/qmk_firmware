@@ -34,6 +34,7 @@ enum charybdis_keymap_layers {
     LAYER_MEDIA,
     LAYER_NUMERAL,
     LAYER_SYMBOLS,
+    LAYER_NUMPAD,
     LAYER_FUNCTION,
 };
 
@@ -59,8 +60,12 @@ static uint16_t auto_pointer_layer_timer = 0;
 // #define TAB_FUN LT(LAYER_FUNCTION, KC_TAB)
 #define BSP_NUM LT(LAYER_NUMERAL, KC_BSPC)
 #define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
+#define DEL_NPD LT(LAYER_NUMPAD, KC_DEL)
 #define FCN_LAY MO(LAYER_FUNCTION)
+#define NPD_LAY MO(LAYER_NUMPAD)
 #define _L_BTN(KC) LT(LAYER_POINTER, KC)
+
+#define S(kc) LSFT(kc)
 
 // clang-format off
 /** \brief Dvorak layout (3 rows, 10 columns). */
@@ -116,7 +121,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
     XXXXXXX, _____HOME_ROW_MODS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
     KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
-                      XXXXXXX, KC_BTN1, KC_BTN2,  FCN_LAY,  KC_DEL
+                      XXXXXXX, KC_BTN1, KC_BTN2,  FCN_LAY, DEL_NPD
 
 /**
  * \brief Media layer.
@@ -140,7 +145,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_NUMERAL                                                                   \
     KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    KC_SLSH,    KC_4,    KC_5,    KC_6,  KC_EQL,  ______________HOME_ROW_MODS_R_____, XXXXXXX, \
+    KC_SLSH,    KC_4,    KC_5,    KC_6,  KC_EQL,  ______________HOME_ROW_MODS_R_____, NPD_LAY, \
      KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
                        KC_DOT,    KC_0, KC_MINS,  XXXXXXX, _______
 
@@ -156,6 +161,21 @@ static uint16_t auto_pointer_layer_timer = 0;
     KC_QUES,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,  ______________HOME_ROW_MODS_R_____, FCN_LAY, \
     KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
                       KC_LPRN, KC_RPRN, KC_UNDS,  _______, XXXXXXX
+
+/**
+ * \brief Number Pad layer.
+ *
+ * Tertiary left-hand layer has a hexadecimal number pad with digits in the same locations as
+ * the digits on the Number Layer. The digits A - C are on the outer column with the same
+ * locations as F10 - F12 on the Function Layer and D - F are on the inner column.
+ * Numbers in this layer use the dedicated numpad keys; therefore, shifted symbols will not
+ * work on this layer but Alt-codes can be used on Windows.
+ */
+#define LAYOUT_LAYER_NUMPAD                                                                    \
+    S(KC_C), KC_KP_7, KC_KP_8, KC_KP_9, S(KC_F),  ___X________X__DEAD_HALF_ROW__X________X___, \
+    S(KC_B), KC_KP_4, KC_KP_5, KC_KP_6, S(KC_E),  ______________HOME_ROW_MODS_R_____, _______, \
+    S(KC_A), KC_KP_1, KC_KP_2, KC_KP_3, S(KC_D),  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
+                      KC_LPRN, KC_RPRN, KC_UNDS,  XXXXXXX, _______
 
 /**
  * \brief Function layer.
@@ -224,12 +244,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT_wrapper(
     BUTTON_MOD(HOME_ROW_MOD_GACS(LAYOUT_LAYER_BASE))
   ),
-  [LAYER_FUNCTION] = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
+  [LAYER_POINTER] = LAYOUT_wrapper(LAYOUT_LAYER_POINTER),
   [LAYER_MEDIA] = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
   [LAYER_NUMERAL] = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
-  [LAYER_POINTER] = LAYOUT_wrapper(LAYOUT_LAYER_POINTER),
   [LAYER_SYMBOLS] = LAYOUT_wrapper(LAYOUT_LAYER_SYMBOLS),
+  [LAYER_NUMPAD] = LAYOUT_wrapper(LAYOUT_LAYER_NUMPAD),
+  [LAYER_FUNCTION] = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
 };
 // clang-format on
 
@@ -276,6 +297,11 @@ void rgb_matrix_update_pwm_buffers(void);
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
+    if (!host_keyboard_led_state().num_lock)  {
+        // Turn on Num Lock if the computer indicates it is off
+        register_code(KC_NLCK);
+        unregister_code(KC_NLCK);
+    }
     // Your macros...
 
     return true;
