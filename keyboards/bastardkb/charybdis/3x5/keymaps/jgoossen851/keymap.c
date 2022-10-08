@@ -16,9 +16,16 @@
  */
 #include QMK_KEYBOARD_H
 
+#include "features/layer_lock.h"
+
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 #    include "timer.h"
 #endif  // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+
+enum custom_keycodes {
+        LLOCK = SAFE_RANGE,
+    // Other custom keys...
+};
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
@@ -54,9 +61,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define BSP_NUM LT(LAYER_NUMERAL, KC_BSPC)
 #define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
 #define _L_BTN(KC) LT(LAYER_POINTER2, KC)
-
-#define LK_BASE DF(LAYER_BASE)
-#define LK_PTR DF(LAYER_POINTER)
 
 // clang-format off
 /** \brief Dvorak layout (3 rows, 10 columns). */
@@ -111,7 +115,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_POINTER                                                                   \
     DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
     XXXXXXX, _____HOME_ROW_MODS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
-    KC_LGUI, LK_BASE,  LK_PTR, XXXXXXX, XXXXXXX,  ________________CLIPBOARD_R________________, \
+    KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
                       XXXXXXX, XXXXXXX, _______,  XXXXXXX,  KC_DEL
 
 /**
@@ -281,6 +285,13 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
 #endif
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
+    // Your macros...
+
+    return true;
+}
 
 void shutdown_user(void) {
 #ifdef RGBLIGHT_ENABLE
