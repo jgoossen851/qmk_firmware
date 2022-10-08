@@ -81,7 +81,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define          _____HOME_ROW_MODS_L______________           KC_LALT, KC_LCTL, KC_LSFT, KC_RALT
 #define ______________HOME_ROW_MODS_R_____           KC_RALT, KC_LSFT, KC_LCTL, KC_LALT
 #define ________________CLIPBOARD_L________________    _UNDO,    _CUT,   _COPY,  _PASTE,   _REDO
-#define ________________CLIPBOARD_R________________    _REDO,  _PASTE,   _COPY,    _CUT,   _UNDO
+#define ________________CLIPBOARD_R________________    _REDO,    _CUT,   _COPY,  _PASTE,   _UNDO
 
 /*
  * Layers used on the Charybdis Nano.
