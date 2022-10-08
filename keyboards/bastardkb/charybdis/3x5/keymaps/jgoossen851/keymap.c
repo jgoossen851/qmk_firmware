@@ -29,12 +29,12 @@ enum custom_keycodes {
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
-    LAYER_FUNCTION,
     LAYER_NAVIGATION,
-    LAYER_MEDIA,
     LAYER_POINTER,
+    LAYER_MEDIA,
     LAYER_NUMERAL,
     LAYER_SYMBOLS,
+    LAYER_FUNCTION,
 };
 
 // Automatically enable sniping-mode on the pointer layer.
@@ -59,6 +59,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 // #define TAB_FUN LT(LAYER_FUNCTION, KC_TAB)
 #define BSP_NUM LT(LAYER_NUMERAL, KC_BSPC)
 #define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
+#define FCN_LAY MO(LAYER_FUNCTION)
 #define _L_BTN(KC) LT(LAYER_POINTER, KC)
 
 // clang-format off
@@ -115,7 +116,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     DPI_MOD, XXXXXXX, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
     XXXXXXX, _____HOME_ROW_MODS_L______________,  XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
     KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
-                      XXXXXXX, KC_BTN1, KC_BTN2,  XXXXXXX,  KC_DEL
+                      XXXXXXX, KC_BTN1, KC_BTN2,  FCN_LAY,  KC_DEL
 
 /**
  * \brief Media layer.
@@ -152,23 +153,25 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_SYMBOLS                                                                   \
     KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    KC_QUES,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,  ______________HOME_ROW_MODS_R_____, XXXXXXX, \
+    KC_QUES,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,  ______________HOME_ROW_MODS_R_____, FCN_LAY, \
     KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
                       KC_LPRN, KC_RPRN, KC_UNDS,  _______, XXXXXXX
 
 /**
  * \brief Function layer.
  *
- * Secondary right-hand layer has function keys mirroring the numerals on the
- * primary layer with extras on the pinkie column, plus system keys on the inner
- * column. App is on the tertiary thumb key and other thumb keys are duplicated
+ * Quaternary left-hand layer has function keys in the same locations as the numerals on the
+ * primary layer with extras on the pinkie column, plus system keys on the inner column.
+ * Layer is activated pressing both the secondary thumb key (symbols) and the right pinky
+ * home-row key (pointer) key simultaneously.
+ * App is on the tertiary thumb key and other thumb keys are duplicated
  * from the base layer to enable auto-repeat.
  */
 #define LAYOUT_LAYER_FUNCTION                                                                  \
-    ___X________X__DEAD_HALF_ROW__X________X___,  KC_PSCR,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
-    XXXXXXX, _____HOME_ROW_MODS_L______________,  KC_SLCK,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
-    KC_LGUI, ___X_______DEAD_KEYS_IV_______X___,  KC_PAUS,   KC_F1,   KC_F2,   KC_F3,  KC_F10, \
-                      XXXXXXX, XXXXXXX, _______,  XXXXXXX, XXXXXXX
+     KC_F12,   KC_F7,   KC_F8,   KC_F9, KC_PSCR,  ___X________X__DEAD_HALF_ROW__X________X___, \
+     KC_F11,   KC_F4,   KC_F5,   KC_F6, KC_SLCK,  ______________HOME_ROW_MODS_R_____, _______, \
+     KC_F10,   KC_F1,   KC_F2,   KC_F3, KC_PAUS,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
+                       KC_APP,  KC_SPC,  KC_TAB,  _______, XXXXXXX
 
 /**
  * \brief Add Home Row mod to a layout.
