@@ -120,15 +120,14 @@ static uint16_t auto_pointer_layer_timer = 0;
 /**
  * \brief Media layer.
  *
- * Tertiary left- and right-hand layer is media and RGB control.  This layer is
- * symmetrical to accomodate the left- and right-hand trackball.
+ * Tertiary right-hand layer is media.
 
  */
 #define LAYOUT_LAYER_MEDIA                                                                     \
-    XXXXXXX,RGB_RMOD, RGB_TOG, RGB_MOD, XXXXXXX,  XXXXXXX,RGB_RMOD, RGB_TOG, RGB_MOD, XXXXXXX, \
-    KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT,  KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, \
-    XXXXXXX, XXXXXXX, XXXXXXX, EEP_RST, QK_BOOT,  QK_BOOT, EEP_RST, XXXXXXX, XXXXXXX, XXXXXXX, \
-                      _______, KC_MPLY, KC_MSTP,  KC_MSTP, KC_MPLY
+    EEP_RST, ___X_______DEAD_KEYS_IV_______X___,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    ___X________X__DEAD_HALF_ROW__X________X___,  KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, \
+    XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK, QK_BOOT,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+                      _______, XXXXXXX, XXXXXXX,  KC_MSTP, KC_MPLY
 
 
 /**
