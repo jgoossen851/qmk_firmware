@@ -109,9 +109,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  * base layer to avoid having to layer change mid edit and to enable auto-repeat.
  */
 #define LAYOUT_LAYER_NAVIGATION                                                                \
-    ___X________X__DEAD_HALF_ROW__X________X___,   KC_INS, KC_HOME,   KC_UP,  KC_END, KC_PGUP, \
+    KC_LGUI, ___X_______DEAD_KEYS_IV_______X___,   KC_INS, KC_HOME,   KC_UP,  KC_END, KC_PGUP, \
     XXXXXXX, _____HOME_ROW_MODS_L______________,  KC_CLCK, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, \
-    KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
+    XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
                       XXXXXXX, _______, XXXXXXX,   KC_ENT, KC_BSPC
 
 /** \brief Mouse emulation and pointer functions. 
@@ -119,9 +119,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  * Secondary right-hand layer
  */
 #define LAYOUT_LAYER_POINTER                                                                   \
-    KC_WH_U, DPI_MOD, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
-    KC_WH_D, _____HOME_ROW_MODS_L______________,  CAPSWRD, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
-    KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
+    KC_LGUI, DPI_MOD, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
+    XXXXXXX, _____HOME_ROW_MODS_L______________,  CAPSWRD, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
+    XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
                       ALT_LAY, KC_BTN1, KC_BTN2,  FCN_LAY, DEL_NPD
 
 /**
@@ -143,9 +143,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  * Quaternary right-hand layer is more symbols.
  */
 #define LAYOUT_LAYER_ALT_SYMBOLS                                                               \
-    ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    KC_LGUI, ___X_______DEAD_KEYS_IV_______X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
     XXXXXXX, _____HOME_ROW_MODS_L______________,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    KC_LGUI, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
                       _______, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX
 
 
@@ -157,9 +157,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  * `KC_DOT` is duplicated from the base layer.
  */
 #define LAYOUT_LAYER_NUMERAL                                                                   \
-    KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,  XXXXXXX, KC_BSPC,  KC_DEL, XXXXXXX, XXXXXXX, \
+    KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,  XXXXXXX, KC_BSPC,  KC_DEL, XXXXXXX, KC_LGUI, \
     KC_SLSH,    KC_4,    KC_5,    KC_6,  KC_EQL,  ______________HOME_ROW_MODS_R_____, NPD_LAY, \
-     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
+     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, XXXXXXX, \
                        KC_DOT,    KC_0, KC_MINS,  XXXXXXX, _______
 
 /**
@@ -170,9 +170,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  * `KC_RPRN`.
  */
 #define LAYOUT_LAYER_SYMBOLS                                                                   \
-    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,  XXXXXXX, KC_BSPC,  KC_DEL, XXXXXXX, XXXXXXX, \
+    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,  XXXXXXX, KC_BSPC,  KC_DEL, XXXXXXX, KC_LGUI, \
     KC_QUES,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,  ______________HOME_ROW_MODS_R_____, FCN_LAY, \
-    KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
+    KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, XXXXXXX, \
                       KC_LPRN, KC_RPRN, KC_UNDS,  _______, XXXXXXX
 
 /**
@@ -201,9 +201,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  * from the base layer to enable auto-repeat.
  */
 #define LAYOUT_LAYER_FUNCTION                                                                  \
-     KC_F12,   KC_F7,   KC_F8,   KC_F9, KC_PSCR,  ___X________X__DEAD_HALF_ROW__X________X___, \
+     KC_F12,   KC_F7,   KC_F8,   KC_F9, KC_PSCR,  ___X_______DEAD_KEYS_IV_______X___, KC_LGUI, \
      KC_F11,   KC_F4,   KC_F5,   KC_F6, KC_SLCK,  ______________HOME_ROW_MODS_R_____, _______, \
-     KC_F10,   KC_F1,   KC_F2,   KC_F3, KC_PAUS,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_LGUI, \
+     KC_F10,   KC_F1,   KC_F2,   KC_F3, KC_PAUS,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, XXXXXXX, \
                        KC_APP,  KC_SPC,  KC_TAB,  _______, XXXXXXX
 
 /**
@@ -221,12 +221,12 @@ static uint16_t auto_pointer_layer_timer = 0;
     L10, L11, L12, L13, L14, R15, R16, R17, R18, R19,                  \
     L20, L21, L22, L23, L24, R25, R26, R27, R28, R29,                  \
     ...)                                                               \
-             L00,         L01,         L02,         L03,         L04,  \
-             R05,         R06,         R07,         R08,         R09,  \
+      LGUI_T(L00),        L01,         L02,         L03,         L04,  \
+             R05,         R06,         R07,         R08,  RGUI_T(R09), \
              L10,  LALT_T(L11), LCTL_T(L12), LSFT_T(L13), RALT_T(L14), \
       RALT_T(R15), RSFT_T(R16), RCTL_T(R17), LALT_T(R18),        R19,  \
-      LGUI_T(L20),        L21,         L22,         L23,         L24,  \
-             R25,         R26,         R27,         R28,  RGUI_T(R29), \
+             L20,         L21,         L22,         L23,         L24,  \
+             R25,         R26,         R27,         R28,         R29,  \
       __VA_ARGS__
 #define HOME_ROW_MOD_GACS(...) _HOME_ROW_MOD_GACS(__VA_ARGS__)
 
