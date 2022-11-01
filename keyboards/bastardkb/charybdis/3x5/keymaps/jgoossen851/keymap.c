@@ -110,7 +110,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_NAVIGATION                                                                \
     KC_LGUI, ___X_______DEAD_KEYS_IV_______X___,   KC_INS, KC_HOME,   KC_UP,  KC_END, KC_PGUP, \
-    XXXXXXX, _____HOME_ROW_MODS_L______________,  KC_CLCK, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, \
+    XXXXXXX, _____HOME_ROW_MODS_L______________,  CAPSWRD, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, \
     XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
                       XXXXXXX, _______, XXXXXXX,   KC_ENT, KC_BSPC
 
@@ -120,7 +120,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_POINTER                                                                   \
     KC_LGUI, DPI_MOD, DRGSCRL, SNIPING, S_D_MOD,  XXXXXXX, KC_WH_L, DRGSCRL, KC_WH_R, KC_WH_U, \
-    XXXXXXX, _____HOME_ROW_MODS_L______________,  CAPSWRD, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
+    XXXXXXX, _____HOME_ROW_MODS_L______________,  KC_CLCK, KC_BTN1, KC_BTN2, KC_BTN3, KC_WH_D, \
     XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK, XXXXXXX,  ________________CLIPBOARD_R________________, \
                       ALT_LAY, KC_BTN1, KC_BTN2,  FCN_LAY, DEL_NPD
 
