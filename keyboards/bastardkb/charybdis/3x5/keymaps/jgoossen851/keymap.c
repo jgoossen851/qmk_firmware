@@ -159,7 +159,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NUMERAL                                                                   \
     KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,  XXXXXXX, KC_BSPC,  KC_DEL, XXXXXXX, KC_LGUI, \
     KC_SLSH,    KC_4,    KC_5,    KC_6,  KC_EQL,  ______________HOME_ROW_MODS_R_____, NPD_LAY, \
-     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, XXXXXXX, \
+     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_COLN, \
                        KC_DOT,    KC_0, KC_MINS,  XXXXXXX, _______
 
 /**
@@ -187,7 +187,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NUMPAD                                                                    \
     S(KC_C), KC_KP_7, KC_KP_8, KC_KP_9, S(KC_F),  XXXXXXX, KC_BSPC,  KC_DEL, XXXXXXX, XXXXXXX, \
     S(KC_B), KC_KP_4, KC_KP_5, KC_KP_6, S(KC_E),  ___X_______DEAD_KEYS_IV_______X___, _______, \
-    S(KC_A), KC_KP_1, KC_KP_2, KC_KP_3, S(KC_D),  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, XXXXXXX, \
+    S(KC_A), KC_KP_1, KC_KP_2, KC_KP_3, S(KC_D),  XXXXXXX,   LLOCK, XXXXXXX, XXXXXXX, KC_COLN, \
                       KC_PDOT, KC_KP_0, KC_PENT,  XXXXXXX, _______
 
 /**
