@@ -73,7 +73,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_BASE                                                                          \
         KC_QUOT, KC_COMM,  KC_DOT,    KC_P,    KC_Y,     KC_F,    KC_G,    KC_C,    KC_R,    KC_L, \
            KC_A,    KC_O,    KC_E,    KC_U,    KC_I,     KC_D,    KC_H,    KC_T,    KC_N,    KC_S, \
-        KC_COLN,    KC_Q,    KC_J,    KC_K,    KC_X,     KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, \
+        KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X,     KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, \
                           ESC_MED, SPC_NAV, TAB_PTR,  ENT_SYM, BSP_NUM
 
 /** Convenience row shorthands. */
