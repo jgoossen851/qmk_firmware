@@ -19,6 +19,21 @@
 
 #include "3x5.h"
 
+// Mask out handedness diode and other unused
+// matrix positions using key ordering from header file
+const matrix_row_t matrix_mask[] = {
+    // Left hand (LSB = outside key)
+    0b11111,
+    0b11111,
+    0b11111,
+    0b11100,
+    // Right hand
+    0b11111,
+    0b11111,
+    0b11111,
+    0b11000,
+};
+
 // clang-format off
 #ifdef RGB_MATRIX_ENABLE
 /**

@@ -39,7 +39,8 @@
 #define DIODE_DIRECTION COL2ROW
 
 /* Handedness. */
-#define MASTER_RIGHT
+#define SPLIT_HAND_MATRIX_GRID F7, C6
+#define MATRIX_MASKED
 
 /* Bootmagic Lite configuration. */
 #define BOOTMAGIC_LITE_ROW 0
