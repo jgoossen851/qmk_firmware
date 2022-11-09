@@ -16,16 +16,9 @@
  */
 #include QMK_KEYBOARD_H
 
-#include "features/layer_lock.h"
-
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 #    include "timer.h"
 #endif  // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-
-enum custom_keycodes {
-        LLOCK = SAFE_RANGE,
-    // Other custom keys...
-};
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
@@ -298,7 +291,6 @@ void rgb_matrix_update_pwm_buffers(void);
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
     if (!host_keyboard_led_state().num_lock)  {
         // Turn on Num Lock if the computer indicates it is off
         register_code(KC_NLCK);

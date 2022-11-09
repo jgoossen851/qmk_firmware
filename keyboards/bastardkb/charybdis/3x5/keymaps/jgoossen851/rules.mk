@@ -1,5 +1,3 @@
-SRC += features/layer_lock.c
-
 VIA_ENABLE = no
 
 RGB_MATRIX_SUPPORTED = no  # RGB matrix is supported and enabled by default
