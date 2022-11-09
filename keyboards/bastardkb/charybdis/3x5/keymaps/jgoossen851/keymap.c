@@ -150,10 +150,10 @@ static uint16_t auto_pointer_layer_timer = 0;
  * Secondary right-hand layer
  */
 #define LAYOUT_LAYER_POINTER                                                                   \
-     KC_ESC, DPI_MOD, DRG_TOG, SNIPING, KC_WH_U,   KC_DEL, KC_WH_L, DRG_TOG, KC_WH_R, KC_BSPC, \
-     KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_WH_D,   KC_INS, KC_BTN1, KC_BTN2, KC_BTN3, SNIPING, \
+     KC_ESC, DPI_MOD, DRG_TOG, SNP_TOG, KC_WH_U,   KC_DEL, KC_WH_L, DRG_TOG, KC_WH_R, KC_BSPC, \
+     KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_WH_D,   KC_INS, KC_BTN1, KC_BTN2, KC_BTN3,  KC_ENT, \
     KC_LGUI, S_D_MOD, XXXXXXX, XXXXXXX, XXXXXXX,  ________________CLIPBOARD_R________________, \
-                      MO_PNTR, TO_ALPH, OSL_PNT,  TO_NAVG, TO_MEDA
+                      MO_PNTR, TO_ALPH, TO_PNTR,  TO_NAVG, TO_MEDA
 
 
 /**
