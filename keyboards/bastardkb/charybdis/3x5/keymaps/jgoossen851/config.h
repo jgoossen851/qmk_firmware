@@ -22,7 +22,7 @@
 #endif  // VIA_ENABLE
 
 /* Disable unused features. */
-#define NO_ACTION_ONESHOT
+// #define NO_ACTION_ONESHOT
 
 #ifndef TAPPING_TERM
 /**
