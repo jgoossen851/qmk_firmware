@@ -65,6 +65,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define TO_PNTR TO(LAYER_POINTER)
 #define TO_FUNC TO(LAYER_FUNCTION)
 #define TO_HXNP TO(LAYER_NUMPAD)
+#define MO_PNTR MO(LAYER_POINTER)
 
 #define KC_BTAB S(KC_TAB)
 
@@ -76,7 +77,7 @@ static uint16_t auto_pointer_layer_timer = 0;
         KC_QUOT, KC_COMM,  KC_DOT,    KC_P,    KC_Y,     KC_F,    KC_G,    KC_C,    KC_R,    KC_L, \
            KC_A,    KC_O,    KC_E,    KC_U,    KC_I,     KC_D,    KC_H,    KC_T,    KC_N,    KC_S, \
         KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X,     KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, \
-                          XXXXXXX, SPC_MEH, OSM_SFT,  OSM_CTL, OSL_SYM
+                          MO_PNTR, SPC_MEH, OSM_SFT,  OSM_CTL, OSL_SYM
 
 /** Convenience row shorthands. */
 #define _REDO   LCTL(KC_Y)
@@ -111,7 +112,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_ESC,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,  KC_CIRC, KC_AMPR, KC_ASTR,  KC_GRV, KC_BSPC, \
      KC_TAB, KC_BTAB, KC_QUES, KC_SLSH, KC_MINS,  KC_BSLS, KC_LPRN, KC_RPRN, KC_PIPE,  KC_ENT, \
     KC_COLN, KC_TILD, XXXXXXX, XXXXXXX, KC_EXLM,  KC_LBRC, KC_LCBR, KC_RCBR, KC_RBRC, TO_NAVG, \
-                      XXXXXXX, TO_ALPH, CAPSWRD,  OSM_CTL, TO_NUMB
+                      MO_PNTR, TO_ALPH, CAPSWRD,  OSM_CTL, TO_NUMB
 
 
 /**
@@ -125,7 +126,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_ESC, TO_HXNP, KC_PDOT, XXXXXXX, KC_PLUS,   KC_EQL,    KC_7,    KC_8,    KC_9, KC_BSPC, \
      KC_TAB, KC_BTAB, XXXXXXX, KC_SLSH, KC_MINS,  KC_UNDS,    KC_4,    KC_5,    KC_6, KC_PENT, \
     KC_COLN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     KC_0,    KC_1,    KC_2,    KC_3, TO_NAVG, \
-                      XXXXXXX, TO_ALPH, TO_FUNC,  OSM_CTL, TO_SYMB
+                      MO_PNTR, TO_ALPH, TO_FUNC,  OSM_CTL, TO_SYMB
 
 
 /**
@@ -140,7 +141,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_ESC, KC_VOLD, KC_MUTE, KC_VOLU,  KC_INS,  KC_PGUP, KC_HOME,   KC_UP,  KC_END, KC_BSPC, \
      KC_TAB, KC_MPRV, KC_MPLY, KC_MNXT,  KC_DEL,  KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT, \
     XXXXXXX, KC_MSTP, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO_PNTR, \
-                      XXXXXXX, TO_ALPH, OSM_SFT,  OSM_CTL, TO_SYMB
+                      MO_PNTR, TO_ALPH, OSM_SFT,  OSM_CTL, TO_SYMB
 
 
 
@@ -149,10 +150,10 @@ static uint16_t auto_pointer_layer_timer = 0;
  * Secondary right-hand layer
  */
 #define LAYOUT_LAYER_POINTER                                                                   \
-     KC_ESC, S_D_MOD, DRGSCRL, XXXXXXX, DPI_MOD,  KC_WH_U, KC_WH_L, DRGSCRL, KC_WH_R, KC_BSPC, \
-     KC_TAB, KC_BTAB, SNIPING, XXXXXXX,  KC_DEL,  KC_WH_D, KC_BTN1, KC_BTN2, KC_BTN3,  KC_ENT, \
+     KC_ESC, S_D_MOD, DRG_TOG, XXXXXXX, DPI_MOD,  KC_WH_U, KC_WH_L, DRG_TOG, KC_WH_R, KC_BSPC, \
+     KC_TAB, KC_BTAB, SNIPING, XXXXXXX,  KC_DEL,  KC_WH_D, KC_BTN1, KC_BTN2, KC_BTN3, SNIPING, \
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-                      XXXXXXX, TO_ALPH, OSM_SFT,  OSM_CTL, TO_SYMB
+                      MO_PNTR, TO_ALPH, OSM_SFT,  OSM_CTL, TO_SYMB
 
 
 /**
@@ -169,7 +170,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_F12,   KC_F7,   KC_F8,   KC_F9, KC_PSCR, \
     XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, XXXXXXX,  KC_F11,   KC_F4,   KC_F5,   KC_F6, KC_SLCK, \
     XXXXXXX, KC_CLCK, XXXXXXX,  KC_APP, XXXXXXX,  KC_F10,   KC_F1,   KC_F2,   KC_F3, KC_PAUS, \
-                      XXXXXXX, TO_ALPH, OSM_SFT,  OSM_CTL, TO_SYMB
+                      MO_PNTR, TO_ALPH, OSM_SFT,  OSM_CTL, TO_SYMB
 
 
 /**
@@ -185,7 +186,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_ESC, TO_NUMB, KC_PDOT, KC_BSPC, KC_PLUS,     KC_C,    KC_7,    KC_8,    KC_9,    KC_F, \
      KC_TAB, KC_BTAB, XXXXXXX, KC_SLSH, KC_MINS,     KC_B,    KC_4,    KC_5,    KC_6,    KC_E, \
     KC_COLN, KC_CLCK, XXXXXXX,  KC_ENT, XXXXXXX,     KC_A,    KC_1,    KC_2,    KC_3,    KC_D, \
-                      XXXXXXX, TO_ALPH, TO_FUNC,     KC_0, TO_SYMB
+                      MO_PNTR, TO_ALPH, TO_FUNC,     KC_0, TO_SYMB
 
 
 /**
