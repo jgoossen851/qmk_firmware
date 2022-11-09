@@ -247,10 +247,10 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE]       = LAYOUT_wrapper(HOME_ROW_MOD_LEFT(HOME_ROW_MOD_RIGHT( LAYOUT_LAYER_BASE       ))),
-  [LAYER_SYMBOLS]    = LAYOUT_wrapper(HOME_ROW_MOD_LEFT(HOME_ROW_MOD_RIGHT( LAYOUT_LAYER_SYMBOLS    ))),
-  [LAYER_NUMERAL]    = LAYOUT_wrapper(HOME_ROW_MOD_LEFT(                    LAYOUT_LAYER_NUMERAL    )),
-  [LAYER_NAVIGATION] = LAYOUT_wrapper(HOME_ROW_MOD_LEFT(                    LAYOUT_LAYER_NAVIGATION )),
-  [LAYER_POINTER]    = LAYOUT_wrapper(HOME_ROW_MOD_LEFT(                    LAYOUT_LAYER_POINTER    )),
+  [LAYER_SYMBOLS]    = LAYOUT_wrapper(                                      LAYOUT_LAYER_SYMBOLS    ),
+  [LAYER_NUMERAL]    = LAYOUT_wrapper(                                      LAYOUT_LAYER_NUMERAL    ),
+  [LAYER_NAVIGATION] = LAYOUT_wrapper(                                      LAYOUT_LAYER_NAVIGATION ),
+  [LAYER_POINTER]    = LAYOUT_wrapper(                                      LAYOUT_LAYER_POINTER    ),
   [LAYER_FUNCTION]   = LAYOUT_wrapper(                                      LAYOUT_LAYER_FUNCTION   ),
   [LAYER_NUMPAD]     = LAYOUT_wrapper(                                      LAYOUT_LAYER_NUMPAD     ),
 };
