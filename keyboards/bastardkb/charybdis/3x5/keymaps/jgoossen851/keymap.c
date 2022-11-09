@@ -152,7 +152,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_POINTER                                                                   \
      KC_ESC, S_D_MOD, DRG_TOG, XXXXXXX, DPI_MOD,  KC_WH_U, KC_WH_L, DRG_TOG, KC_WH_R, KC_BSPC, \
      KC_TAB, KC_BTAB, SNIPING, XXXXXXX,  KC_DEL,  KC_WH_D, KC_BTN1, KC_BTN2, KC_BTN3, SNIPING, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  ________________CLIPBOARD_R________________, \
                       MO_PNTR, TO_ALPH, OSM_SFT,  OSM_CTL, TO_SYMB
 
 
