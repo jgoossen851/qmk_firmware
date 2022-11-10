@@ -22,15 +22,15 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
-    LAYER_SYMBOLS,
     LAYER_NUMERAL,
     LAYER_NAVIGATION,
-    LAYER_POINTER,
     LAYER_FUNCTION,
     LAYER_MEDIA,
     LAYER_NUMPAD,
     LAYER_UNICODE,
     LAYER_MATH,
+    LAYER_SYMBOLS,
+    LAYER_POINTER,
 };
 
 // Automatically enable sniping-mode on the pointer layer.
