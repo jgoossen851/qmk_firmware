@@ -19,6 +19,19 @@
 #pragma once
 
 #include "charybdis.h"
+#include "pro_micro.h"
+#include "gpio.h"
+#include "quantum.h"
+
+#define LEFT_CONTROLLER  true 
+#define RIGHT_CONTROLLER false
+#define LED_1  LED_MICRO_L, LEFT_CONTROLLER
+#define LED_2  LED_MICRO_R, LEFT_CONTROLLER
+#define LED_3  LED_MICRO_L, RIGHT_CONTROLLER
+#define LED_4  LED_MICRO_R, RIGHT_CONTROLLER
+
+void LED_ON(const pin_t pin, const bool is_left);
+void LED_OFF(const pin_t pin, const bool is_left);
 
 // clang-format off
 #define LAYOUT_charybdis_3x5(                           \

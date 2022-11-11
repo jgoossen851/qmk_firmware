@@ -34,6 +34,26 @@ const matrix_row_t matrix_mask[] = {
     0b11000,
 };
 
+void keyboard_pre_init_kb(void) {
+    keyboard_pre_init_user();
+
+    // Initialize LEDs as outputs
+    setPinOutput(LED_MICRO_L);
+    setPinOutput(LED_MICRO_R);
+}
+
+void LED_ON(const pin_t pin, const bool is_left) { 
+  if( is_keyboard_left() == is_left ) {
+    writePinLow(pin);
+  }
+};
+
+void LED_OFF(const pin_t pin, const bool is_left) { 
+  if( is_keyboard_left() == is_left ) {
+    writePinHigh(pin);
+  }
+};
+
 // clang-format off
 #ifdef RGB_MATRIX_ENABLE
 /**

@@ -21,6 +21,8 @@
 #    define DYNAMIC_KEYMAP_LAYER_COUNT 7
 #endif  // VIA_ENABLE
 
+#define SPLIT_LAYER_STATE_ENABLE
+
 /* Disable unused features. */
 // #define NO_ACTION_ONESHOT
 

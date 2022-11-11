@@ -288,14 +288,44 @@ void matrix_scan_kb(void) {
     matrix_scan_user();
 }
 #    endif  // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+#endif      // POINTING_DEVICE_ENABLE
 
-#    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK
 layer_state_t layer_state_set_user(layer_state_t state) {
+#ifdef POINTING_DEVICE_ENABLE
+#    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK
     charybdis_set_pointer_sniping_enabled(state & (CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK));
-    return state;
-}   
 #    endif  // CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK
 #endif      // POINTING_DEVICE_ENABLE
+    switch (get_highest_layer(state)) {
+        case LAYER_BASE:
+            LED_OFF(LED_1);
+            LED_OFF(LED_2);
+            LED_OFF(LED_3);
+            LED_OFF(LED_4);
+            break;
+        case LAYER_NAVIGATION:
+        case LAYER_POINTER:
+            LED_OFF(LED_1);
+            LED_ON(LED_2);
+            LED_OFF(LED_3);
+            LED_ON(LED_4);
+            break;
+        case LAYER_SYMBOLS:
+        case LAYER_NUMERAL:
+            LED_ON(LED_1);
+            LED_OFF(LED_2);
+            LED_ON(LED_3);
+            LED_OFF(LED_4);
+            break;
+        default:
+            LED_ON(LED_1);
+            LED_ON(LED_2);
+            LED_ON(LED_3);
+            LED_ON(LED_4);
+            break;
+    }
+    return state;
+}
 
 #ifdef RGB_MATRIX_ENABLE
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
