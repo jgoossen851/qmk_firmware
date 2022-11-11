@@ -52,6 +52,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define OSM_SFT OSM(MOD_LSFT)
 // #define OSM_CTL OSM(MOD_LCTL)
 #define OSL_SYM OSL(LAYER_SYMBOLS)
+#define OSL_NUM OSL(LAYER_NUMERAL)
+#define OSL_NAV OSL(LAYER_NAVIGATION)
 #define OSL_PNT OSL(LAYER_POINTER)
 #define AST_ALT MT(KC_ASTR, MOD_LALT)
 
@@ -75,7 +77,7 @@ static uint16_t auto_pointer_layer_timer = 0;
         KC_QUOT, KC_COMM,  KC_DOT,    KC_P,    KC_Y,     KC_F,    KC_G,    KC_C,    KC_R,    KC_L, \
            KC_A,    KC_O,    KC_E,    KC_U,    KC_I,     KC_D,    KC_H,    KC_T,    KC_N,    KC_S, \
         KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X,     KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, \
-                          MO_PNTR,  KC_SPC, OSL_PNT,  TO_NAVG, OSL_SYM
+                          OSL_NAV,  KC_SPC, OSL_PNT,  OSL_NUM, OSL_SYM
 
 /** Convenience row shorthands. */
 #define _REDO   LCTL(KC_Y)
@@ -112,8 +114,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_SYMBOLS                                                                   \
      KC_ESC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,   KC_DEL, KC_SLSH, KC_QUES, XXXXXXX, KC_BSPC, \
      KC_TAB,  KC_DLR, KC_PERC, KC_CIRC, KC_MINS,  CAPSWRD, ___HOME_ROW_MODS_ACS_R___,  KC_ENT, \
-    KC_LBRC, KC_EXLM,   KC_AT, KC_HASH, KC_RBRC,  KC_CAPS, XXXXXXX, TO_PNTR, XXXXXXX, TO_NUMB, \
-                      MO_PNTR, TO_ALPH, OSL_PNT,  TO_NAVG, TO_SYMB
+    KC_LBRC, KC_EXLM,   KC_AT, KC_HASH, KC_RBRC,  KC_CAPS, XXXXXXX, TO_PNTR, XXXXXXX, XXXXXXX, \
+                      OSL_NAV, TO_ALPH, OSL_PNT,  OSL_NUM, TO_SYMB
 
 
 /**
@@ -127,7 +129,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_ESC,    KC_7,    KC_8,    KC_9,  KC_EQL,   KC_DEL, KC_SLSH,    KC_0, KC_PDOT, KC_BSPC, \
      KC_TAB,    KC_4,    KC_5,    KC_6, KC_MINS,   KC_INS, OSM_SFT, KC_RCTL, AST_ALT, KC_PENT, \
      KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX, KC_COLN, KC_MINS, KC_PLUS, TG_HXNP, \
-                      MO_PNTR, TO_ALPH, OSL_PNT,  TO_NAVG, OSL_SYM
+                      OSL_NAV, TO_ALPH, OSL_PNT,  TO_NUMB, OSL_SYM
 
 
 /**
@@ -142,7 +144,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGUP,   KC_DEL, KC_HOME,   KC_UP,  KC_END, KC_BSPC, \
      KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_PGDN,   KC_INS, KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT, \
     KC_LGUI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, TO_PNTR, XXXXXXX, TO_FUNC, \
-                      MO_PNTR, TO_ALPH, OSL_PNT,  TO_NAVG, OSL_SYM
+                      TO_NAVG, TO_ALPH, OSL_PNT,  OSL_NUM, OSL_SYM
 
 
 /** \brief Mouse emulation and pointer functions. 
@@ -153,7 +155,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_ESC, DPI_MOD, DRGSCRL, SNP_TOG, KC_WH_U,   KC_DEL, KC_WH_L, DRG_TOG, KC_WH_R, KC_BSPC, \
      KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_WH_D,   KC_INS, KC_BTN1, KC_BTN2, KC_BTN3,  KC_ENT, \
     KC_LGUI, S_D_MOD, XXXXXXX, XXXXXXX, XXXXXXX,  ________________CLIPBOARD_R________________, \
-                      MO_PNTR, TO_ALPH, TO_PNTR,  TO_NAVG, TO_MEDA
+                      OSL_NAV, TO_ALPH, TO_PNTR,  OSL_NUM, TO_MEDA
 
 
 /**
@@ -170,7 +172,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_F12,   KC_F7,   KC_F8,   KC_F9, KC_PSCR,  XXXXXXX, XXXXXXX,  KC_APP, XXXXXXX, XXXXXXX, \
      KC_F11,   KC_F4,   KC_F5,   KC_F6, KC_SLCK,  XXXXXXX, ___HOME_ROW_MODS_ACS_R___, XXXXXXX, \
      KC_F10,   KC_F1,   KC_F2,   KC_F3, KC_PAUS,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO_MATH, \
-                      MO_PNTR, TO_ALPH, OSL_PNT,  TO_UNIC, TO_SYMB
+                      OSL_NAV, TO_ALPH, OSL_PNT,  TO_UNIC, TO_SYMB
 
 
 /**
@@ -181,7 +183,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     ___X________X__DEAD_HALF_ROW__X________X___,  XXXXXXX, KC_MSTP, KC_MPLY, XXXXXXX, XXXXXXX, \
     ___X________X__DEAD_HALF_ROW__X________X___,  KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, \
     ___X_______DEAD_KEYS_IV_______X___, QK_BOOT,  XXXXXXX, XXXXXXX, TO_PNTR, XXXXXXX, TO_NUMB, \
-                      MO_PNTR, TO_ALPH, OSL_PNT,  TO_NAVG, TO_SYMB
+                      OSL_NAV, TO_ALPH, OSL_PNT,  OSL_NUM, TO_SYMB
 
 
 /**
@@ -207,7 +209,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
     ___X________X__DEAD_HALF_ROW__X________X___,  XXXXXXX, XXXXXXX, TO_PNTR, XXXXXXX, TO_FUNC, \
-                      MO_PNTR, TO_ALPH, OSL_PNT,  TO_NAVG, TO_SYMB
+                      OSL_NAV, TO_ALPH, OSL_PNT,  OSL_NUM, TO_SYMB
 
 /**
  * \brief Math layer.
@@ -217,7 +219,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
-                      MO_PNTR, TO_ALPH, OSL_PNT,  TO_NAVG, TO_SYMB
+                      OSL_NAV, TO_ALPH, OSL_PNT,  OSL_NUM, TO_SYMB
 
 
 /**
