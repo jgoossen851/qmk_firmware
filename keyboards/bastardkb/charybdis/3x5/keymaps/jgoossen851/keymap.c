@@ -22,20 +22,20 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
-    LAYER_NUMERAL,
-    LAYER_NAVIGATION,
-    LAYER_FUNCTION,
-    LAYER_MEDIA,
     LAYER_NUMPAD,
-    LAYER_UNICODE,
-    LAYER_MATH,
+    LAYER_NUMERAL,
     LAYER_SYMBOLS,
-    LAYER_POINTER,
+    LAYER_FUNCTION,
+    LAYER_POINTER_OSL,
+    LAYER_MEDIA,
+    LAYER_NAVIGATION,
+    LAYER_TOOL,
+    LAYER_POINTER_TO,
 };
 
 // Automatically enable sniping-mode on the pointer layer.
 #define LAYER_MASK(layer) ((layer_state_t)1 << layer)
-#define CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK LAYER_MASK(LAYER_POINTER)
+#define CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK ( LAYER_MASK(LAYER_POINTER_OSL) | LAYER_MASK(LAYER_POINTER_TO) )
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 static uint16_t auto_pointer_layer_timer = 0;
@@ -54,22 +54,26 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define OSL_SYM OSL(LAYER_SYMBOLS)
 #define OSL_NUM OSL(LAYER_NUMERAL)
 #define OSL_NAV OSL(LAYER_NAVIGATION)
-#define OSL_PNT OSL(LAYER_POINTER)
+#define OSL_PNT OSL(LAYER_POINTER_OSL)
+#define OSL_FUN OSL(LAYER_FUNCTION)
+#define OSL_TOL OSL(LAYER_TOOL)
+#define OSL_PT2 OSL(LAYER_POINTER_TO)
 #define AST_ALT MT(KC_ASTR, MOD_LALT)
 
 #define TO_ALPH TO(LAYER_BASE)
 #define TO_SYMB TO(LAYER_SYMBOLS)
 #define TO_NUMB TO(LAYER_NUMERAL)
 #define TO_NAVG TO(LAYER_NAVIGATION)
-#define TO_PNTR TO(LAYER_POINTER)
+#define TO_PNTR TO(LAYER_POINTER_OSL)
 #define TO_FUNC TO(LAYER_FUNCTION)
 #define TO_MEDA TO(LAYER_MEDIA)
-#define TG_HXNP TG(LAYER_NUMPAD)
-#define TO_UNIC TO(LAYER_UNICODE)
-#define TO_MATH TO(LAYER_MATH)
+#define TO_HXNP TO(LAYER_NUMPAD)
+#define TO_TOOL TO(LAYER_TOOL)
+#define TO_PTR2 TO(LAYER_POINTER_TO)
 
-#define MO_PNTR MO(LAYER_POINTER)
-#define _L_BTN(KC) LT(LAYER_POINTER, KC)
+#define MO_PNTR MO(LAYER_POINTER_OSL)
+#define LNAV    LAYER_NAVIGATION
+#define LMED    LAYER_MEDIA
 
 // clang-format off
 /** \brief Dvorak layout (3 rows, 10 columns). */
@@ -77,7 +81,7 @@ static uint16_t auto_pointer_layer_timer = 0;
         KC_QUOT, KC_COMM,  KC_DOT,    KC_P,    KC_Y,     KC_F,    KC_G,    KC_C,    KC_R,    KC_L, \
            KC_A,    KC_O,    KC_E,    KC_U,    KC_I,     KC_D,    KC_H,    KC_T,    KC_N,    KC_S, \
         KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X,     KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, \
-                          OSL_NAV,  KC_SPC, OSL_PNT,  OSL_NUM, OSL_SYM
+                          XXXXXXX,  KC_SPC, OSL_PNT,  OSL_NUM, OSL_SYM
 
 /** Convenience row shorthands. */
 #define _REDO   LCTL(KC_Y)
@@ -114,8 +118,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_SYMBOLS                                                                   \
      KC_ESC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,   KC_DEL, KC_SLSH, KC_QUES, XXXXXXX, KC_BSPC, \
      KC_TAB,  KC_DLR, KC_PERC, KC_CIRC, KC_MINS,  CAPSWRD, ___HOME_ROW_MODS_ACS_R___,  KC_ENT, \
-    KC_LBRC, KC_EXLM,   KC_AT, KC_HASH, KC_RBRC,  KC_CAPS, XXXXXXX, TO_PNTR, XXXXXXX, XXXXXXX, \
-                      OSL_NAV, TO_ALPH, OSL_PNT,  OSL_NUM, TO_SYMB
+    KC_LBRC, KC_EXLM,   KC_AT, KC_HASH, KC_RBRC,  KC_CAPS, TO_SYMB, TO_NAVG, OSL_FUN, XXXXXXX, \
+                      _______, TO_ALPH, OSL_PNT,  TO_NUMB, TO_SYMB
 
 
 /**
@@ -127,9 +131,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_NUMERAL                                                                   \
      KC_ESC,    KC_7,    KC_8,    KC_9,  KC_EQL,   KC_DEL, KC_SLSH,    KC_0, KC_PDOT, KC_BSPC, \
-     KC_TAB,    KC_4,    KC_5,    KC_6, KC_MINS,   KC_INS, OSM_SFT, KC_RCTL, AST_ALT, KC_PENT, \
-     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX, KC_COLN, KC_MINS, KC_PLUS, TG_HXNP, \
-                      OSL_NAV, TO_ALPH, OSL_PNT,  TO_NUMB, OSL_SYM
+     KC_TAB,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_COLN, OSM_SFT, KC_RCTL, KC_LALT, KC_PENT, \
+     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX, TO_NUMB, TO_PNTR, TO_HXNP, KC_RGUI, \
+                      _______, TO_ALPH, OSL_PNT,  TO_NUMB, OSL_SYM
 
 
 /**
@@ -143,19 +147,19 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NAVIGATION                                                                \
      KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGUP,   KC_DEL, KC_HOME,   KC_UP,  KC_END, KC_BSPC, \
      KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_PGDN,   KC_INS, KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT, \
-    KC_LGUI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, TO_PNTR, XXXXXXX, TO_FUNC, \
-                      TO_NAVG, TO_ALPH, OSL_PNT,  OSL_NUM, OSL_SYM
+    KC_LGUI, OSL_TOL, TO_SYMB, TO_NAVG, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+                      _______, TO_ALPH, OSL_PT2,  TO_NUMB, TO_SYMB
 
 
 /** \brief Mouse emulation and pointer functions. 
  *
  * Secondary right-hand layer
  */
-#define LAYOUT_LAYER_POINTER                                                                   \
+#define LAYOUT_LAYER_POINTER(f)                                                                   \
      KC_ESC, DPI_MOD, DRGSCRL, SNP_TOG, KC_WH_U,   KC_DEL, KC_WH_L, DRG_TOG, KC_WH_R, KC_BSPC, \
      KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_WH_D,   KC_INS, KC_BTN1, KC_BTN2, KC_BTN3,  KC_ENT, \
-    KC_LGUI, S_D_MOD, XXXXXXX, XXXXXXX, XXXXXXX,  ________________CLIPBOARD_R________________, \
-                      OSL_NAV, TO_ALPH, TO_PNTR,  OSL_NUM, TO_MEDA
+    KC_LGUI, f(LMED), TO_NUMB, TO_PNTR, S_D_MOD,  ________________CLIPBOARD_R________________, \
+                      _______, TO_ALPH, f(LNAV),  TO_NUMB, TO_SYMB
 
 
 /**
@@ -171,8 +175,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_FUNCTION                                                                  \
      KC_F12,   KC_F7,   KC_F8,   KC_F9, KC_PSCR,  XXXXXXX, XXXXXXX,  KC_APP, XXXXXXX, XXXXXXX, \
      KC_F11,   KC_F4,   KC_F5,   KC_F6, KC_SLCK,  XXXXXXX, ___HOME_ROW_MODS_ACS_R___, XXXXXXX, \
-     KC_F10,   KC_F1,   KC_F2,   KC_F3, KC_PAUS,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO_MATH, \
-                      OSL_NAV, TO_ALPH, OSL_PNT,  TO_UNIC, TO_SYMB
+     KC_F10,   KC_F1,   KC_F2,   KC_F3, KC_PAUS,  XXXXXXX, TO_FUNC, TO_TOOL, XXXXXXX, XXXXXXX, \
+                      _______, TO_ALPH, OSL_PNT,  TO_NUMB, TO_SYMB
 
 
 /**
@@ -182,8 +186,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_MEDIA                                                                     \
     ___X________X__DEAD_HALF_ROW__X________X___,  XXXXXXX, KC_MSTP, KC_MPLY, XXXXXXX, XXXXXXX, \
     ___X________X__DEAD_HALF_ROW__X________X___,  KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, \
-    ___X_______DEAD_KEYS_IV_______X___, QK_BOOT,  XXXXXXX, XXXXXXX, TO_PNTR, XXXXXXX, TO_NUMB, \
-                      OSL_NAV, TO_ALPH, OSL_PNT,  OSL_NUM, TO_SYMB
+    XXXXXXX, XXXXXXX, TO_HXNP, TO_MEDA, QK_BOOT,  XXXXXXX, XXXXXXX, TO_PNTR, XXXXXXX, TO_NUMB, \
+                      _______, TO_ALPH, OSL_PT2,  TO_NUMB, TO_SYMB
 
 
 /**
@@ -198,28 +202,18 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NUMPAD                                                                    \
        KC_C, _______, _______, _______,    KC_F,  _______, _______, _______, _______, _______, \
        KC_B, _______, _______, _______,    KC_E,  _______, XXXXXXX, XXXXXXX, KC_ASTR, _______, \
-       KC_A, _______, _______, _______,    KC_D,  KC_CAPS, _______, _______,    KC_3, _______, \
-                      _______, _______, _______,  _______, _______
+       KC_A, _______, _______, _______,    KC_D,  KC_CAPS, TO_HXNP, TO_MEDA, XXXXXXX, _______, \
+                      _______, TO_ALPH, OSL_PNT,  OSL_NUM, OSL_SYM
 
 /**
- * \brief Unicode layer.
+ * \brief Tools layer.
  *
  */
-#define LAYOUT_LAYER_UNICODE                                                                   \
+#define LAYOUT_LAYER_TOOL                                                                      \
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    ___X________X__DEAD_HALF_ROW__X________X___,  XXXXXXX, XXXXXXX, TO_PNTR, XXXXXXX, TO_FUNC, \
-                      OSL_NAV, TO_ALPH, OSL_PNT,  OSL_NUM, TO_SYMB
-
-/**
- * \brief Math layer.
- *
- */
-#define LAYOUT_LAYER_MATH                                                                      \
-    ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
-                      OSL_NAV, TO_ALPH, OSL_PNT,  OSL_NUM, TO_SYMB
+    XXXXXXX, XXXXXXX, TO_FUNC, TO_TOOL, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
+                      _______, TO_ALPH, OSL_PT2,  TO_NUMB, TO_SYMB
 
 
 /**
@@ -254,12 +248,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_SYMBOLS]    = LAYOUT_wrapper(LAYOUT_LAYER_SYMBOLS),
   [LAYER_NUMERAL]    = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
-  [LAYER_POINTER]    = LAYOUT_wrapper(LAYOUT_LAYER_POINTER),
+  [LAYER_POINTER_OSL]    = LAYOUT_wrapper(LAYOUT_LAYER_POINTER(OSL)),
   [LAYER_FUNCTION]   = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
   [LAYER_MEDIA]      = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
   [LAYER_NUMPAD]     = LAYOUT_wrapper(LAYOUT_LAYER_NUMPAD),
-  [LAYER_UNICODE]    = LAYOUT_wrapper(LAYOUT_LAYER_UNICODE),
-  [LAYER_MATH]       = LAYOUT_wrapper(LAYOUT_LAYER_MATH),
+  [LAYER_TOOL]       = LAYOUT_wrapper(LAYOUT_LAYER_TOOL),
+  [LAYER_POINTER_TO]  = LAYOUT_wrapper(LAYOUT_LAYER_POINTER(TO)),
 };
 // clang-format on
 
@@ -306,7 +300,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             LED_OFF(LED_4);
             break;
         case LAYER_NAVIGATION:
-        case LAYER_POINTER:
+        case LAYER_POINTER_OSL:
             LED_OFF(LED_1);
             LED_ON(LED_2);
             LED_OFF(LED_3);
