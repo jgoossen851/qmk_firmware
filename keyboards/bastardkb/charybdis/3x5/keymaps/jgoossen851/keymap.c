@@ -202,7 +202,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NUMPAD                                                                    \
        KC_C, KC_KP_7, KC_KP_8, KC_KP_9,    KC_F,   KC_DEL, KC_SLSH, KC_KP_0, KC_PDOT, KC_BSPC, \
        KC_B, KC_KP_4, KC_KP_5, KC_KP_6,    KC_E,  KC_COLN, KC_ASTR, KC_MINS, KC_PLUS, KC_PENT, \
-       KC_A, KC_KP_1, KC_KP_2, KC_KP_3,    KC_D,  KC_CAPS, TO_HXNP, TO_MEDA, XXXXXXX, XXXXXXX, \
+       KC_A, KC_KP_1, KC_KP_2, KC_KP_3,    KC_D,  KC_CAPS, TO_HXNP, TO_MEDA, XXXXXXX,  KC_NUM, \
                       _______, TO_ALPH, OSL_PNT,  OSL_NUM, OSL_SYM
 
 /**
@@ -210,7 +210,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  *
  */
 #define LAYOUT_LAYER_TOOL                                                                      \
-    ___X________X__DEAD_HALF_ROW__X________X___,  ___X_______DEAD_KEYS_IV_______X___, QK_BOOT, \
+    ___X________X__DEAD_HALF_ROW__X________X___,   EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT, \
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
     XXXXXXX, XXXXXXX, TO_FUNC, TO_TOOL, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
                       _______, TO_ALPH, OSL_PT2,  TO_NUMB, TO_SYMB
