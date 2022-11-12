@@ -174,7 +174,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_FUNCTION                                                                  \
      KC_F12,   KC_F7,   KC_F8,   KC_F9, KC_PSCR,  XXXXXXX, XXXXXXX,  KC_APP, XXXXXXX, XXXXXXX, \
-     KC_F11,   KC_F4,   KC_F5,   KC_F6, KC_SLCK,  XXXXXXX, ___HOME_ROW_MODS_ACS_R___, XXXXXXX, \
+     KC_F11,   KC_F4,   KC_F5,   KC_F6, KC_SCRL,  XXXXXXX, ___HOME_ROW_MODS_ACS_R___, XXXXXXX, \
      KC_F10,   KC_F1,   KC_F2,   KC_F3, KC_PAUS,  XXXXXXX, TO_FUNC, TO_TOOL, XXXXXXX, KC_RGUI, \
                       _______, TO_ALPH, OSL_PNT,  TO_NUMB, TO_SYMB
 

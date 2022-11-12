@@ -38,6 +38,14 @@
 
 #define DIODE_DIRECTION COL2ROW
 
+/* LED Indicators */
+#define LED_CAPS_LOCK_PIN   D1
+#define LED_NUM_LOCK_PIN    D0
+#define LED_SCROLL_LOCK_PIN D4
+// #define LED_COMPOSE_PIN 	
+// #define LED_KANA_PIN 
+#define LED_PIN_ON_STATE    1
+
 /* Handedness. */
 #define SPLIT_HAND_MATRIX_GRID F7, C6
 #define MATRIX_MASKED
