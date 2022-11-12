@@ -257,35 +257,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-#ifdef POINTING_DEVICE_ENABLE
-#    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    if (abs(mouse_report.x) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD || abs(mouse_report.y) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD) {
-        if (auto_pointer_layer_timer == 0) {
-            layer_on(LAYER_POINTER);
-#        ifdef RGB_MATRIX_ENABLE
-            rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
-            rgb_matrix_sethsv_noeeprom(HSV_GREEN);
-#        endif  // RGB_MATRIX_ENABLE
-        }
-        auto_pointer_layer_timer = timer_read();
-    }
-    return mouse_report;
+
+/* Define user callbacks */
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    return true;
 }
 
-void matrix_scan_kb(void) {
-    if (auto_pointer_layer_timer != 0 && TIMER_DIFF_16(timer_read(), auto_pointer_layer_timer) >= CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS) {
-        auto_pointer_layer_timer = 0;
-        layer_off(LAYER_POINTER);
-#        ifdef RGB_MATRIX_ENABLE
-        rgb_matrix_mode_noeeprom(RGB_MATRIX_STARTUP_MODE);
-#        endif  // RGB_MATRIX_ENABLE
-    }
-    matrix_scan_user();
-}
-#    endif  // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-#endif      // POINTING_DEVICE_ENABLE
 
+/* Layers */
+
+/* Callback for layer functions, for users. */
 layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef POINTING_DEVICE_ENABLE
 #    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK
@@ -323,21 +305,157 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-#ifdef RGB_MATRIX_ENABLE
-// Forward-declare this helper function since it is defined in rgb_matrix.c.
-void rgb_matrix_update_pwm_buffers(void);
-#endif
+/* Callback for default layer functions, for users. Called on keyboard initialization */
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    return state;
+}
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+/* Caps Word */
+
+#ifdef CAPS_WORD_ENABLE
+void caps_word_set_user(bool active) {
+    if (active) {
+        // Do something when Caps Word activates.
+    } else {
+        // Do something when Caps Word deactivates.
+    }
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_KP_1 ... KC_KP_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
+#endif // CAPS_WORD_ENABLE
+
+
+/* EEPROM */
+
+void eeconfig_init_user(void) {}
+
+
+/* One Shot Keys */
+
+void oneshot_locked_mods_changed_user(uint8_t mods) {}
+void oneshot_mods_changed_user(uint8_t mods) {}
+void oneshot_layer_changed_user(uint8_t layer) {}
+
+
+/* LED Indicators */
+
+bool led_update_user(led_t led_state) {
+    return true;
+};
+
+
+/* Pointing Device */
+#ifdef POINTING_DEVICE_ENABLE
+void pointing_device_init_user(void) {}
+
+#    if defined(SPLIT_POINTING_ENABLE) && (POINTING_DEVICE_COMBINED)
+report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
+    return pointing_device_combine_reports(left_report, right_report);
+}
+
+#    else
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+#        ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+    if (abs(mouse_report.x) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD || abs(mouse_report.y) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD) {
+        if (auto_pointer_layer_timer == 0) {
+            layer_on(LAYER_POINTER_OSL);
+#            ifdef RGB_MATRIX_ENABLE
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+            rgb_matrix_sethsv_noeeprom(HSV_GREEN);
+#            endif // !RGB_MATRIX_ENABLE
+        }
+        auto_pointer_layer_timer = timer_read();
+    }
+#        endif // !CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+    return mouse_report;
+}
+#    endif // !defined(SPLIT_POINTING_ENABLE) && (POINTING_DEVICE_COMBINED)
+#endif // !POINTING_DEVICE_ENABLE
+
+
+/* Customizing Functionality */
+
+
+/* Happens before most anything is started. Good for hardware setup that you want running very early */
+void keyboard_pre_init_user(void) {
+
+}
+
+/* Happens midway through the firmware’s startup process. Hardware is initialized, but features may not be yet */
+void matrix_init_user(void) {
+
+}
+
+/* Happens at the end of the firmware’s startup process. This is where you’d want to put “customization” code, for the most part */
+void keyboard_post_init_user(void) {
     if (!host_keyboard_led_state().num_lock)  {
         // Turn on Num Lock if the computer indicates it is off
         register_code(KC_NLCK);
         unregister_code(KC_NLCK);
     }
-    // Your macros...
-
-    return true;
 }
+
+/*
+ * Whenever possible you should customize your keyboard by using process_record_*()
+ * and hooking into events that way, to ensure that your code does not have a 
+ * negative performance impact on your keyboard.
+ */
+void matrix_scan_user(void) {
+#ifdef POINTING_DEVICE_ENABLE
+#    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+    if (auto_pointer_layer_timer != 0 && TIMER_DIFF_16(timer_read(), auto_pointer_layer_timer) >= CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS) {
+        auto_pointer_layer_timer = 0;
+        layer_off(LAYER_POINTER_OSL);
+#        ifdef RGB_MATRIX_ENABLE
+        rgb_matrix_mode_noeeprom(RGB_MATRIX_STARTUP_MODE);
+#        endif // !RGB_MATRIX_ENABLE
+    }
+#    endif // !CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+#endif // !POINTING_DEVICE_ENABLE
+}
+
+/* 
+ * This function gets called at the end of all QMK processing, before starting the next iteration
+ * Similar to matrix_scan_*, these are called as often as the MCU can handle.
+ * To keep your board responsive, it’s suggested to do as little as possible during these function calls,
+ * potentially throtting their behaviour if you do indeed require implementing something special.
+ */
+void housekeeping_task_user(void) {
+
+}
+
+void suspend_power_down_user(void) {
+    // code will run multiple times while keyboard is suspended
+}
+
+void suspend_wakeup_init_user(void) {
+    // code will run on keyboard wakeup
+}
+
+#ifdef RGB_MATRIX_ENABLE
+// Forward-declare this helper function since it is defined in rgb_matrix.c.
+void rgb_matrix_update_pwm_buffers(void);
+#endif
 
 void shutdown_user(void) {
 #ifdef RGBLIGHT_ENABLE
