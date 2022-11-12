@@ -200,9 +200,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  * work on this layer but Alt-codes can be used on Windows.
  */
 #define LAYOUT_LAYER_NUMPAD                                                                    \
-       KC_C, _______, _______, _______,    KC_F,  _______, _______, _______, _______, _______, \
-       KC_B, _______, _______, _______,    KC_E,  _______, XXXXXXX, XXXXXXX, KC_ASTR, _______, \
-       KC_A, _______, _______, _______,    KC_D,  KC_CAPS, TO_HXNP, TO_MEDA, XXXXXXX, _______, \
+       KC_C,    KC_7,    KC_8,    KC_9,    KC_F,   KC_DEL, KC_SLSH,    KC_0, KC_PDOT, KC_BSPC, \
+       KC_B,    KC_4,    KC_5,    KC_6,    KC_E,  KC_COLN, XXXXXXX, XXXXXXX, KC_ASTR, KC_PENT, \
+       KC_A,    KC_1,    KC_2,    KC_3,    KC_D,  KC_CAPS, TO_HXNP, TO_MEDA, XXXXXXX, XXXXXXX, \
                       _______, TO_ALPH, OSL_PNT,  OSL_NUM, OSL_SYM
 
 /**
