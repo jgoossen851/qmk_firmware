@@ -23,6 +23,8 @@
 
 #define SPLIT_LAYER_STATE_ENABLE
 
+#define BILATERAL_COMBINATIONS
+
 /* Disable unused features. */
 // #define NO_ACTION_ONESHOT
 
