@@ -267,6 +267,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 /* Layers */
 
+void enable_numlock_first_time(void) {
+    // First time executed, turn on Num Lock if the computer indicates it is off
+    static bool firstTime = true;
+    if (firstTime && !host_keyboard_led_state().num_lock)  {
+        register_code(KC_NUMLOCK);
+        unregister_code(KC_NUMLOCK);
+        firstTime = false;
+    }
+}
+
 /* Callback for layer functions, for users. */
 layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef POINTING_DEVICE_ENABLE
@@ -295,6 +305,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             LED_ON(LED_3);
             LED_OFF(LED_4);
             break;
+        case LAYER_NUMPAD:
+            enable_numlock_first_time();
+            // no break; use default lighting
         default:
             LED_ON(LED_1);
             LED_ON(LED_2);
@@ -397,23 +410,14 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 
 
 /* Happens before most anything is started. Good for hardware setup that you want running very early */
-void keyboard_pre_init_user(void) {
-
-}
+void keyboard_pre_init_user(void) {}
 
 /* Happens midway through the firmware’s startup process. Hardware is initialized, but features may not be yet */
-void matrix_init_user(void) {
+void matrix_init_user(void) {}
 
-}
 
 /* Happens at the end of the firmware’s startup process. This is where you’d want to put “customization” code, for the most part */
-void keyboard_post_init_user(void) {
-    if (!host_keyboard_led_state().num_lock)  {
-        // Turn on Num Lock if the computer indicates it is off
-        register_code(KC_NLCK);
-        unregister_code(KC_NLCK);
-    }
-}
+void keyboard_post_init_user(void) {}
 
 /*
  * Whenever possible you should customize your keyboard by using process_record_*()
