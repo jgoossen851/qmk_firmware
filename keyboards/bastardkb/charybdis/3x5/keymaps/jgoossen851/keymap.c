@@ -69,7 +69,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define TO_MEDA TO(LAYER_MEDIA)
 #define TO_HXNP TO(LAYER_NUMPAD)
 #define TO_TOOL TO(LAYER_TOOL)
-#define TO_PTR2 TO(LAYER_POINTER_TO)
 
 #define MO_PNTR MO(LAYER_POINTER_OSL)
 #define LNAV    LAYER_NAVIGATION
@@ -133,7 +132,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_ESC,    KC_7,    KC_8,    KC_9,  KC_EQL,   KC_DEL, KC_SLSH,    KC_0, KC_PDOT, KC_BSPC, \
      KC_TAB,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_COLN, OSM_SFT, KC_RCTL, KC_LALT,  KC_ENT, \
      KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX, TO_NUMB, TO_PNTR, TO_HXNP, KC_RGUI, \
-                      _______, TO_ALPH, OSL_PNT,  TO_NUMB, OSL_SYM
+                      _______, OSL_NAV, OSL_PNT,  TO_NUMB, OSL_SYM
 
 
 /**
@@ -148,7 +147,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGUP,   KC_DEL, KC_HOME,   KC_UP,  KC_END, KC_BSPC, \
      KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_PGDN,   KC_INS, KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT, \
     KC_LGUI, OSL_TOL, TO_SYMB, TO_NAVG, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-                      _______, TO_ALPH, OSL_PT2,  TO_NUMB, TO_SYMB
+                      _______, TO_NAVG, OSL_PT2,  TO_NUMB, TO_SYMB
 
 
 /** \brief Mouse emulation and pointer functions. 
@@ -159,7 +158,7 @@ static uint16_t auto_pointer_layer_timer = 0;
      KC_ESC, DPI_MOD, DRGSCRL, SNP_TOG, KC_WH_U,   KC_DEL, KC_WH_L, DRG_TOG, KC_WH_R, KC_BSPC, \
      KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_WH_D,   KC_INS, KC_BTN1, KC_BTN2, KC_BTN3,  KC_ENT, \
     KC_LGUI, f(LMED), TO_NUMB, TO_PNTR, S_D_MOD,  ________________CLIPBOARD_R________________, \
-                      _______, TO_ALPH, f(LNAV),  TO_NUMB, TO_SYMB
+                      _______, TO_ALPH, TO_PNTR,  TO_NUMB, TO_SYMB
 
 
 /**
@@ -175,7 +174,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_FUNCTION                                                                  \
      KC_F12,   KC_F7,   KC_F8,   KC_F9, KC_PSCR,  XXXXXXX, XXXXXXX,  KC_APP, XXXXXXX, XXXXXXX, \
      KC_F11,   KC_F4,   KC_F5,   KC_F6, KC_SCRL,  XXXXXXX, ___HOME_ROW_MODS_ACS_R___, XXXXXXX, \
-     KC_F10,   KC_F1,   KC_F2,   KC_F3, KC_PAUS,  XXXXXXX, TO_FUNC, TO_TOOL, XXXXXXX, KC_RGUI, \
+     KC_F10,   KC_F1,   KC_F2,   KC_F3, KC_PAUS,  XXXXXXX, TO_FUNC, TO_TOOL, TO_NUMB, KC_RGUI, \
                       _______, TO_ALPH, OSL_PNT,  TO_NUMB, TO_SYMB
 
 
@@ -186,7 +185,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_MEDIA                                                                     \
     ___X________X__DEAD_HALF_ROW__X________X___,  XXXXXXX, KC_MSTP, KC_MPLY, XXXXXXX, XXXXXXX, \
     ___X________X__DEAD_HALF_ROW__X________X___,  KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, \
-    XXXXXXX, XXXXXXX, TO_HXNP, TO_MEDA, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    XXXXXXX, OSL_NAV, TO_HXNP, TO_MEDA, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
                       _______, TO_ALPH, OSL_PT2,  TO_NUMB, TO_SYMB
 
 
@@ -202,8 +201,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NUMPAD                                                                    \
        KC_C, KC_KP_7, KC_KP_8, KC_KP_9,    KC_F,   KC_DEL, KC_SLSH, KC_KP_0, KC_PDOT, KC_BSPC, \
        KC_B, KC_KP_4, KC_KP_5, KC_KP_6,    KC_E,  KC_COLN, KC_ASTR, KC_MINS, KC_PLUS, KC_PENT, \
-       KC_A, KC_KP_1, KC_KP_2, KC_KP_3,    KC_D,  KC_CAPS, TO_HXNP, TO_MEDA, XXXXXXX,  KC_NUM, \
-                      _______, TO_ALPH, OSL_PNT,  OSL_NUM, OSL_SYM
+       KC_A, KC_KP_1, KC_KP_2, KC_KP_3,    KC_D,  KC_CAPS, TO_HXNP, TO_MEDA, OSL_SYM,  KC_NUM, \
+                      _______, OSL_NAV, OSL_PNT,  OSL_NUM, OSL_SYM
 
 /**
  * \brief Tools layer.
@@ -212,7 +211,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_TOOL                                                                      \
     ___X________X__DEAD_HALF_ROW__X________X___,   EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT, \
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    XXXXXXX, XXXXXXX, TO_FUNC, TO_TOOL, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    XXXXXXX, TO_PNTR, TO_FUNC, TO_TOOL, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
                       _______, TO_ALPH, OSL_PT2,  TO_NUMB, TO_SYMB
 
 
