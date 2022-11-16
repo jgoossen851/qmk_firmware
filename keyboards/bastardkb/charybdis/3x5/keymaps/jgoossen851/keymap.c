@@ -216,7 +216,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_TOOL                                                                      \
     ___X________X__DEAD_HALF_ROW__X________X___,   EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT, \
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    XXXXXXX, OSL_NAV, TO_FUNC, TO_TOOL, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    XXXXXXX, TO_NAVG, TO_FUNC, TO_TOOL, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
                       OSL_PT2, TO_ALPH, OSL_NAV,  TO_NUMB, TO_SYMB
 
 
