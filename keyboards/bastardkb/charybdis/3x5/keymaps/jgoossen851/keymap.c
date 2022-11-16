@@ -27,9 +27,9 @@ enum charybdis_keymap_layers {
     LAYER_SYMBOLS,
     LAYER_FUNCTION,
     LAYER_POINTER_OSL,
-    LAYER_MEDIA,
-    LAYER_NAVIGATION,
     LAYER_TOOL,
+    LAYER_NAVIGATION,
+    LAYER_MEDIA,
     LAYER_POINTER_TO,
 };
 
@@ -56,6 +56,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define OSL_NAV OSL(LAYER_NAVIGATION)
 #define OSL_PNT OSL(LAYER_POINTER_OSL)
 #define OSL_FUN OSL(LAYER_FUNCTION)
+#define OSL_MED OSL(LAYER_MEDIA)
 #define OSL_TOL OSL(LAYER_TOOL)
 #define OSL_PT2 OSL(LAYER_POINTER_TO)
 #define AST_ALT MT(KC_ASTR, MOD_LALT)
@@ -73,6 +74,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define MO_PNTR MO(LAYER_POINTER_OSL)
 #define LNAV    LAYER_NAVIGATION
 #define LMED    LAYER_MEDIA
+#define LTOL    LAYER_TOOL
 
 // clang-format off
 /** \brief Dvorak layout (3 rows, 10 columns). */
@@ -146,7 +148,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NAVIGATION                                                                \
      KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGUP,   KC_DEL, KC_HOME,   KC_UP,  KC_END, KC_BSPC, \
      KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_PGDN,   KC_INS, KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT, \
-    KC_LGUI, OSL_TOL, TO_NUMB, TO_NAVG, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    KC_LGUI, OSL_MED, TO_NUMB, TO_NAVG, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
                       OSL_PT2, TO_ALPH, TO_NAVG,  TO_NUMB, TO_SYMB
 
 
@@ -157,7 +159,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_POINTER(f)                                                                   \
      KC_ESC, DPI_MOD, DRGSCRL, SNP_TOG, KC_WH_U,   KC_DEL, KC_WH_L, DRG_TOG, KC_WH_R, KC_BSPC, \
      KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_WH_D,   KC_INS, KC_BTN1, KC_BTN2, KC_BTN3,  KC_ENT, \
-    KC_LGUI, f(LMED), TO_SYMB, TO_PNTR, S_D_MOD,  ________________CLIPBOARD_R________________, \
+    KC_LGUI, f(LTOL), TO_SYMB, TO_PNTR, S_D_MOD,  ________________CLIPBOARD_R________________, \
                       TO_PNTR, TO_ALPH, f(LNAV),  TO_NUMB, TO_SYMB
 
 
@@ -185,7 +187,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_MEDIA                                                                     \
     ___X________X__DEAD_HALF_ROW__X________X___,  XXXXXXX, KC_MSTP, KC_MPLY, XXXXXXX, XXXXXXX, \
     ___X________X__DEAD_HALF_ROW__X________X___,  KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, \
-    XXXXXXX, OSL_NAV, TO_HXNP, TO_MEDA, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    XXXXXXX, OSL_PT2, TO_HXNP, TO_MEDA, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
                       OSL_PT2, TO_ALPH, TO_NAVG,  TO_NUMB, TO_SYMB
 
 
@@ -211,7 +213,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_TOOL                                                                      \
     ___X________X__DEAD_HALF_ROW__X________X___,   EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT, \
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
-    XXXXXXX, TO_PNTR, TO_FUNC, TO_TOOL, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    XXXXXXX, TO_NAVG, TO_FUNC, TO_TOOL, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
                       OSL_PT2, TO_ALPH, TO_NAVG,  TO_NUMB, TO_SYMB
 
 
