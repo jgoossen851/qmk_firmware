@@ -32,6 +32,7 @@ enum charybdis_keymap_layers {
     LAYER_MEDIA,
     LAYER_POINTER_OSL,
     LAYER_NAVIGATION_OSL,
+    LAYER_MEDIA_OSL,
 };
 
 // Automatically enable sniping-mode on the pointer layer.
@@ -61,6 +62,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define OSL_TOL OSL(LAYER_TOOL)
 #define OSL_PT2 OSL(LAYER_POINTER_OSL)
 #define OSL_NV2 OSL(LAYER_NAVIGATION_OSL)
+#define OSL_MD2 OSL(LAYER_MEDIA_OSL)
 #define AST_ALT MT(KC_ASTR, MOD_LALT)
 
 #define TO_ALPH TO(LAYER_BASE)
@@ -149,7 +151,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NAVIGATION                                                                \
      KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGUP,   KC_DEL, KC_HOME,   KC_UP,  KC_END, KC_BSPC, \
      KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_PGDN,   KC_INS, KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT, \
-    KC_LGUI, OSL_MED, TO_NUMB, TO_NAVG, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    KC_LGUI, OSL_MD2, TO_NUMB, TO_NAVG, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
                       OSL_PT2, TO_ALPH, TO_NAVG,  TO_NUMB, TO_SYMB
 
 
@@ -257,6 +259,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_TOOL]          = LAYOUT_wrapper(LAYOUT_LAYER_TOOL),
   [LAYER_POINTER_OSL]   = LAYOUT_wrapper(LAYOUT_LAYER_POINTER(TO)),
   [LAYER_NAVIGATION_OSL]= LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
+  [LAYER_MEDIA_OSL]     = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
 };
 // clang-format on
 
@@ -372,7 +375,17 @@ void eeconfig_init_user(void) {}
 
 void oneshot_locked_mods_changed_user(uint8_t mods) {}
 void oneshot_mods_changed_user(uint8_t mods) {}
-void oneshot_layer_changed_user(uint8_t layer) {}
+
+void oneshot_layer_changed_user(uint8_t layer) {
+  // On OSL activation, turn off other exclusively OSL layers to allow switching to a lower layer state.
+  // As these layers can only be activated as one-shots, the desired return layer is still on somewhere below in the layer stack.
+  if (layer != LAYER_POINTER_OSL)    { layer_off(LAYER_POINTER_OSL);    }
+  if (layer != LAYER_NAVIGATION_OSL) { layer_off(LAYER_NAVIGATION_OSL); }
+  if (layer != LAYER_MEDIA_OSL)      { layer_off(LAYER_MEDIA_OSL);      }
+  if (!layer) {
+    // Oneshot layer deactivated
+  }
+}
 
 
 /* LED Indicators */
