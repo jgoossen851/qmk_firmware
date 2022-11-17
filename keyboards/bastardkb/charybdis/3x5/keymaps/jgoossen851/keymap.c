@@ -24,6 +24,7 @@ enum charybdis_keymap_layers {
     LAYER_ALPHAS_DVORAK = 0,
     LAYER_ALPHAS_QWERTY,
     LAYER_NUMPAD,
+    LAYER_HEXPAD,
     LAYER_NUMERAL,
     LAYER_SYMBOLS,
     LAYER_FUNCTION,
@@ -73,7 +74,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define TO_PNTR TO(LAYER_POINTER)
 #define TO_FUNC TO(LAYER_FUNCTION)
 #define TO_MEDA TO(LAYER_MEDIA)
-#define TO_HXNP TO(LAYER_NUMPAD)
+#define TO_NMPD TO(LAYER_NUMPAD)
 #define TO_TOOL TO(LAYER_TOOL)
 
 #define LNAV    LAYER_NAVIGATION
@@ -82,6 +83,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 #define DF_DVK  DF(LAYER_ALPHAS_DVORAK)
 #define DF_QWTY DF(LAYER_ALPHAS_QWERTY)
+#define TG_HXPD TG(LAYER_HEXPAD)
 
 // clang-format off
 /** \brief Dvorak layout (3 rows, 10 columns). */
@@ -134,7 +136,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_NUMERAL                                                                   \
      KC_ESC,    KC_7,    KC_8,    KC_9,  KC_EQL,   KC_DEL, KC_SLSH,    KC_0, KC_PDOT, KC_BSPC, \
      KC_TAB,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_COLN, OSM_SFT, KC_RCTL, KC_LALT,  KC_ENT, \
-     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX, TO_NUMB, TO_NAVG, TO_HXNP, KC_RGUI, \
+     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX, TO_NUMB, TO_NAVG, TO_NMPD, KC_RGUI, \
                       OSL_PNT,    KC_0, KC_PDOT,  TO_NUMB, OSL_SYM
 
 
@@ -142,16 +144,31 @@ static uint16_t auto_pointer_layer_timer = 0;
  * \brief Number Pad layer.
  *
  * Tertiary left-hand layer has a hexadecimal number pad with digits in the same locations as
+ * the digits on the Number Layer.
+ * Numbers in this layer use the dedicated numpad keys; therefore, shifted symbols will not
+ * work on this layer but Alt-codes can be used on Windows.
+ */
+#define LAYOUT_LAYER_NUMPAD                                                                    \
+     KC_ESC, KC_KP_7, KC_KP_8, KC_KP_9, KC_PPLS,   KC_DEL, TG_HXPD, XXXXXXX, XXXXXXX, KC_BSPC, \
+     KC_TAB, KC_KP_4, KC_KP_5, KC_KP_6, KC_PMNS,  KC_COLN, ___HOME_ROW_MODS_ACS_R___, KC_PENT, \
+    KC_PSLS, KC_KP_1, KC_KP_2, KC_KP_3, KC_PAST,   KC_NUM, TO_NMPD, TO_MEDA, OSL_SYM, KC_RGUI, \
+                      OSL_PNT, KC_KP_0, KC_PDOT,  OSL_NUM, OSL_SYM
+
+
+/**
+ * \brief Hex Pad layer.
+ *
+ * Tertiary left-hand layer has a hexadecimal number pad with digits in the same locations as
  * the digits on the Number Layer. The digits A - C are on the outer column with the same
  * locations as F10 - F12 on the Function Layer and D - F are on the inner column.
  * Numbers in this layer use the dedicated numpad keys; therefore, shifted symbols will not
  * work on this layer but Alt-codes can be used on Windows.
  */
-#define LAYOUT_LAYER_NUMPAD                                                                    \
-       KC_C, KC_KP_7, KC_KP_8, KC_KP_9,    KC_F,   KC_DEL, KC_SLSH, KC_KP_0, KC_PDOT, KC_BSPC, \
-       KC_B, KC_KP_4, KC_KP_5, KC_KP_6,    KC_E,  KC_COLN, KC_ASTR, KC_MINS, KC_PLUS, KC_PENT, \
-       KC_A, KC_KP_1, KC_KP_2, KC_KP_3,    KC_D,  KC_CAPS, TO_HXNP, TO_MEDA, OSL_SYM,  KC_NUM, \
-                      OSL_PNT, KC_KP_0, KC_PDOT,  OSL_NUM, OSL_SYM
+#define LAYOUT_LAYER_HEXPAD                                                                    \
+       KC_C, _______, _______, _______,    KC_F,  _______, _______, _______, _______, _______, \
+       KC_B, _______, _______, _______,    KC_E,  _______, _______, _______, _______, _______, \
+       KC_A, _______, _______, _______,    KC_D,  _______, XXXXXXX, _______, _______, _______, \
+                      _______, _______, _______,  _______, _______
 
 
 /**
@@ -207,7 +224,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_MEDIA                                                                     \
     ___X________X__DEAD_HALF_ROW__X________X___,  XXXXXXX, KC_MSTP, KC_MPLY, XXXXXXX, XXXXXXX, \
     ___X________X__DEAD_HALF_ROW__X________X___,  KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, \
-    XXXXXXX, TO_PNTR, TO_HXNP, TO_MEDA, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
+    XXXXXXX, TO_PNTR, TO_NMPD, TO_MEDA, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
                       OSL_PT2, TO_ALPH, OSL_NV2,  TO_NUMB, TO_SYMB
 
 
@@ -270,6 +287,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_FUNCTION]      = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
   [LAYER_MEDIA]         = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
   [LAYER_NUMPAD]        = LAYOUT_wrapper(LAYOUT_LAYER_NUMPAD),
+  [LAYER_HEXPAD]        = LAYOUT_wrapper(LAYOUT_LAYER_HEXPAD),
   [LAYER_TOOL]          = LAYOUT_wrapper(LAYOUT_LAYER_TOOL),
   [LAYER_POINTER_OSL]   = LAYOUT_wrapper(LAYOUT_LAYER_POINTER(TO)),
   [LAYER_NAVIGATION_OSL]= LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
