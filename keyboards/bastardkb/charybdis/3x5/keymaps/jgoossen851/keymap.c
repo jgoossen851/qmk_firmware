@@ -161,9 +161,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  * base layer to avoid having to layer change mid edit and to enable auto-repeat.
  */
 #define LAYOUT_LAYER_NAVIGATION                                                                \
-     KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGUP,   KC_DEL, KC_HOME,   KC_UP,  KC_END, KC_BSPC, \
-     KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_PGDN,   KC_INS, KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT, \
-    KC_LGUI, OSL_MD2, TO_NUMB, TO_NAVG, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+     KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_DEL, KC_HOME,   KC_UP, KC_PGUP, KC_BSPC, \
+     KC_TAB, ___HOME_ROW_MODS_ACS_L___, XXXXXXX,   KC_INS, KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT, \
+    KC_LGUI, OSL_MD2, TO_NUMB, TO_NAVG, XXXXXXX,  XXXXXXX,  KC_END, XXXXXXX, KC_PGDN, XXXXXXX, \
                       OSL_PT2, TO_ALPH, TO_NAVG,  TO_NUMB, TO_SYMB
 
 
