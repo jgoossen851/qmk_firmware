@@ -242,8 +242,8 @@ static uint16_t auto_pointer_layer_timer = 0;
  *
  *     HOME_ROW_MOD_GACS(LAYER_BASE)
  */
-#define _ACS_L(kc1, kc2, kc3) LALT_T(kc1), LCTL_T(kc2), LSFT_T(kc3)
-#define _ACS_R(kc1, kc2, kc3) RSFT_T(kc1), RCTL_T(kc2), LALT_T(kc3)
+#define _ACS_L(kc1, kc2, kc3, kc4) LALT_T(kc1), LCTL_T(kc2), LSFT_T(kc3), ALGR_T(kc4)
+#define _ACS_R(kc1, kc2, kc3, kc4) ALGR_T(kc1), RSFT_T(kc2), RCTL_T(kc3), LALT_T(kc4)
 #define _LG(kc) LGUI_T(kc)
 #define _RG(kc) RGUI_T(kc)
 #define _HOME_ROW_MOD_GACS(                                                     \
@@ -251,9 +251,9 @@ static uint16_t auto_pointer_layer_timer = 0;
     L10, L11, L12, L13, L14,   R15, R16, R17, R18, R19,                         \
     L20, L21, L22, L23, L24,   R25, R26, R27, R28, R29,                         \
     ...)                                                                        \
-        L00,        L01, L02, L03,  L04,   R05,        R06, R07, R08,     R09,  \
-        L10, _ACS_L(L11, L12, L13), L14,   R15, _ACS_R(R16, R17, R18),    R19,  \
-    _LG(L20),       L21, L22, L23,  L24,   R25,        R26, R27, R28, _RG(R29), \
+        L00,        L01, L02, L03, L04,           R05, R06, R07, R08,     R09,  \
+        L10, _ACS_L(L11, L12, L13, L14),   _ACS_R(R15, R16, R17, R18),    R19,  \
+    _LG(L20),       L21, L22, L23, L24,           R25, R26, R27, R28, _RG(R29), \
       __VA_ARGS__
 #define HOME_ROW_MOD_GACS(...) _HOME_ROW_MOD_GACS(__VA_ARGS__)
 
