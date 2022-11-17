@@ -21,7 +21,8 @@
 #endif  // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
 enum charybdis_keymap_layers {
-    LAYER_BASE = 0,
+    LAYER_ALPHAS_DVORAK = 0,
+    LAYER_ALPHAS_QWERTY,
     LAYER_NUMPAD,
     LAYER_NUMERAL,
     LAYER_SYMBOLS,
@@ -65,7 +66,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define OSL_MD2 OSL(LAYER_MEDIA_OSL)
 #define AST_ALT MT(KC_ASTR, MOD_LALT)
 
-#define TO_ALPH TO(LAYER_BASE)
+#define TO_ALPH TO(LAYER_ALPHAS_DVORAK) /* As the default layer remains on, this will also return to other base layers (e.g., QWERTY) */
 #define TO_SYMB TO(LAYER_SYMBOLS)
 #define TO_NUMB TO(LAYER_NUMERAL)
 #define TO_NAVG TO(LAYER_NAVIGATION)
@@ -79,12 +80,23 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LMED    LAYER_MEDIA
 #define LTOL    LAYER_TOOL
 
+#define DF_DVK  DF(LAYER_ALPHAS_DVORAK)
+#define DF_QWTY DF(LAYER_ALPHAS_QWERTY)
+
 // clang-format off
 /** \brief Dvorak layout (3 rows, 10 columns). */
-#define LAYOUT_LAYER_BASE                                                                          \
+#define LAYOUT_LAYER_ALPHAS_DVORAK                                                                 \
         KC_QUOT, KC_COMM,  KC_DOT,    KC_P,    KC_Y,     KC_F,    KC_G,    KC_C,    KC_R,    KC_L, \
            KC_A,    KC_O,    KC_E,    KC_U,    KC_I,     KC_D,    KC_H,    KC_T,    KC_N,    KC_S, \
         KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X,     KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, \
+                          OSL_PNT,  KC_SPC, OSL_NAV,  OSL_NUM, OSL_SYM
+
+
+/** \brief QWERTY layout (3 rows, 10 columns). */
+#define LAYOUT_LAYER_ALPHAS_QWERTY                                                                 \
+           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, \
+           KC_A,    KC_S,    KC_D,    KC_F,    KC_G,     KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, \
+           KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,     KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, \
                           OSL_PNT,  KC_SPC, OSL_NAV,  OSL_NUM, OSL_SYM
 
 /** Convenience row shorthands. */
@@ -214,7 +226,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  *
  */
 #define LAYOUT_LAYER_TOOL                                                                      \
-    ___X________X__DEAD_HALF_ROW__X________X___,   EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT, \
+    ___X________X__DEAD_HALF_ROW__X________X___,   EE_CLR,  DF_DVK, DF_QWTY, XXXXXXX, QK_BOOT, \
     ___X________X__DEAD_HALF_ROW__X________X___,  ___X________X__DEAD_HALF_ROW__X________X___, \
     XXXXXXX, TO_NAVG, TO_FUNC, TO_TOOL, XXXXXXX,  ___X________X__DEAD_HALF_ROW__X________X___, \
                       OSL_PT2, TO_ALPH, OSL_NAV,  TO_NUMB, TO_SYMB
@@ -226,9 +238,9 @@ static uint16_t auto_pointer_layer_timer = 0;
  * Expects a 10-key per row layout.  Adds support for GACS (Gui, Alt, Ctl, Shift)
  * home row.  The layout passed in parameter must contain at least 20 keycodes.
  *
- * This is meant to be used with `LAYER_ALPHAS_QWERTY` defined above, eg.:
+ * This is meant to be used with an "Alphas" layer defined above, e.g.:
  *
- *     HOME_ROW_MOD_GACS(LAYER_ALPHAS_QWERTY)
+ *     HOME_ROW_MOD_GACS(LAYER_BASE)
  */
 #define _ACS_L(kc1, kc2, kc3) LALT_T(kc1), LCTL_T(kc2), LSFT_T(kc3)
 #define _ACS_R(kc1, kc2, kc3) RSFT_T(kc1), RCTL_T(kc2), LALT_T(kc3)
@@ -248,7 +260,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_wrapper(...) LAYOUT_charybdis_3x5(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [LAYER_BASE]          = LAYOUT_wrapper(HOME_ROW_MOD_GACS(LAYOUT_LAYER_BASE)),
+  [LAYER_ALPHAS_DVORAK] = LAYOUT_wrapper(HOME_ROW_MOD_GACS(LAYOUT_LAYER_ALPHAS_DVORAK)),
+  [LAYER_ALPHAS_QWERTY] = LAYOUT_wrapper(HOME_ROW_MOD_GACS(LAYOUT_LAYER_ALPHAS_QWERTY)),
   [LAYER_SYMBOLS]       = LAYOUT_wrapper(LAYOUT_LAYER_SYMBOLS),
   [LAYER_NUMERAL]       = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
   [LAYER_NAVIGATION]    = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
@@ -291,7 +304,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #    endif  // CHARYBDIS_AUTO_SNIPING_ON_LAYER_MASK
 #endif      // POINTING_DEVICE_ENABLE
     switch (get_highest_layer(state)) {
-        case LAYER_BASE:
+        case LAYER_ALPHAS_DVORAK:
+        case LAYER_ALPHAS_QWERTY:
             LED_OFF(LED_1);
             LED_OFF(LED_2);
             LED_OFF(LED_3);
