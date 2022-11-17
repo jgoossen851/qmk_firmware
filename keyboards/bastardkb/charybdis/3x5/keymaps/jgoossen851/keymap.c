@@ -125,20 +125,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 
 /**
- * \brief Symbols layer.
- *
- * Secondary left-hand layer has shifted symbols in the same locations to reduce
- * chording when using mods with shifted symbols. `KC_LPRN` is duplicated next to
- * `KC_RPRN`.
- */
-#define LAYOUT_LAYER_SYMBOLS                                                                   \
-     KC_ESC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,   KC_DEL, KC_SLSH, KC_QUES, XXXXXXX, KC_BSPC, \
-     KC_TAB,  KC_DLR, KC_PERC, KC_CIRC, KC_MINS,  CAPSWRD, ___HOME_ROW_MODS_ACS_R___,  KC_ENT, \
-    KC_LBRC, KC_EXLM,   KC_AT, KC_HASH, KC_RBRC,  KC_CAPS, TO_SYMB, TO_PNTR, OSL_FUN, KC_RGUI, \
-                      OSL_PNT, TO_ALPH, OSL_NAV,  TO_NUMB, TO_SYMB
-
-
-/**
  * \brief Numeral layout.
  *
  * Primary left-hand layer (right home thumb) is numerals and symbols. Numerals
@@ -153,29 +139,33 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 
 /**
- * \brief Navigation layer.
+ * \brief Number Pad layer.
  *
- * Primary right-hand layer (left home thumb) is navigation and editing. Cursor
- * keys are on the home position, line and page movement below, clipboard above,
- * caps lock and insert on the inner column. Thumb keys are duplicated from the
- * base layer to avoid having to layer change mid edit and to enable auto-repeat.
+ * Tertiary left-hand layer has a hexadecimal number pad with digits in the same locations as
+ * the digits on the Number Layer. The digits A - C are on the outer column with the same
+ * locations as F10 - F12 on the Function Layer and D - F are on the inner column.
+ * Numbers in this layer use the dedicated numpad keys; therefore, shifted symbols will not
+ * work on this layer but Alt-codes can be used on Windows.
  */
-#define LAYOUT_LAYER_NAVIGATION                                                                \
-     KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_DEL, KC_HOME,   KC_UP, KC_PGUP, KC_BSPC, \
-     KC_TAB, ___HOME_ROW_MODS_ACS_L___, XXXXXXX,   KC_INS, KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT, \
-    KC_LGUI, OSL_MD2, TO_NUMB, TO_NAVG, XXXXXXX,  XXXXXXX,  KC_END, XXXXXXX, KC_PGDN, XXXXXXX, \
-                      OSL_PT2, TO_ALPH, TO_NAVG,  TO_NUMB, TO_SYMB
+#define LAYOUT_LAYER_NUMPAD                                                                    \
+       KC_C, KC_KP_7, KC_KP_8, KC_KP_9,    KC_F,   KC_DEL, KC_SLSH, KC_KP_0, KC_PDOT, KC_BSPC, \
+       KC_B, KC_KP_4, KC_KP_5, KC_KP_6,    KC_E,  KC_COLN, KC_ASTR, KC_MINS, KC_PLUS, KC_PENT, \
+       KC_A, KC_KP_1, KC_KP_2, KC_KP_3,    KC_D,  KC_CAPS, TO_HXNP, TO_MEDA, OSL_SYM,  KC_NUM, \
+                      OSL_PNT, KC_KP_0, KC_PDOT,  OSL_NUM, OSL_SYM
 
 
-/** \brief Mouse emulation and pointer functions. 
+/**
+ * \brief Symbols layer.
  *
- * Secondary right-hand layer
+ * Secondary left-hand layer has shifted symbols in the same locations to reduce
+ * chording when using mods with shifted symbols. `KC_LPRN` is duplicated next to
+ * `KC_RPRN`.
  */
-#define LAYOUT_LAYER_POINTER(f)                                                                \
-     KC_ESC, DPI_MOD, DRGSCRL, SNP_TOG, KC_WH_U,   KC_DEL, KC_WH_L, DRG_TOG, KC_WH_R, KC_BSPC, \
-     KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_WH_D,   KC_INS, KC_BTN1, KC_BTN2, KC_BTN3,  KC_ENT, \
-    KC_LGUI, f(LTOL), TO_SYMB, TO_PNTR, S_D_MOD,  ________________CLIPBOARD_R________________, \
-                      TO_PNTR, TO_ALPH, OSL_NV2,  TO_NUMB, TO_SYMB
+#define LAYOUT_LAYER_SYMBOLS                                                                   \
+     KC_ESC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,   KC_DEL, KC_SLSH, KC_QUES, XXXXXXX, KC_BSPC, \
+     KC_TAB,  KC_DLR, KC_PERC, KC_CIRC, KC_MINS,  CAPSWRD, ___HOME_ROW_MODS_ACS_R___,  KC_ENT, \
+    KC_LBRC, KC_EXLM,   KC_AT, KC_HASH, KC_RBRC,  KC_CAPS, TO_SYMB, TO_PNTR, OSL_FUN, KC_RGUI, \
+                      OSL_PNT, TO_ALPH, OSL_NAV,  TO_NUMB, TO_SYMB
 
 
 /**
@@ -196,6 +186,21 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 
 /**
+ * \brief Navigation layer.
+ *
+ * Primary right-hand layer (left home thumb) is navigation and editing. Cursor
+ * keys are on the home position, line and page movement below, clipboard above,
+ * caps lock and insert on the inner column. Thumb keys are duplicated from the
+ * base layer to avoid having to layer change mid edit and to enable auto-repeat.
+ */
+#define LAYOUT_LAYER_NAVIGATION                                                                \
+     KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_DEL, KC_HOME,   KC_UP, KC_PGUP, KC_BSPC, \
+     KC_TAB, ___HOME_ROW_MODS_ACS_L___, XXXXXXX,   KC_INS, KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT, \
+    KC_LGUI, OSL_MD2, TO_NUMB, TO_NAVG, XXXXXXX,  XXXXXXX,  KC_END, XXXXXXX, KC_PGDN, XXXXXXX, \
+                      OSL_PT2, TO_ALPH, TO_NAVG,  TO_NUMB, TO_SYMB
+
+
+/**
  * \brief Media layer.
  *
  */
@@ -206,20 +211,16 @@ static uint16_t auto_pointer_layer_timer = 0;
                       OSL_PT2, TO_ALPH, OSL_NV2,  TO_NUMB, TO_SYMB
 
 
-/**
- * \brief Number Pad layer.
+/** \brief Mouse emulation and pointer functions. 
  *
- * Tertiary left-hand layer has a hexadecimal number pad with digits in the same locations as
- * the digits on the Number Layer. The digits A - C are on the outer column with the same
- * locations as F10 - F12 on the Function Layer and D - F are on the inner column.
- * Numbers in this layer use the dedicated numpad keys; therefore, shifted symbols will not
- * work on this layer but Alt-codes can be used on Windows.
+ * Secondary right-hand layer
  */
-#define LAYOUT_LAYER_NUMPAD                                                                    \
-       KC_C, KC_KP_7, KC_KP_8, KC_KP_9,    KC_F,   KC_DEL, KC_SLSH, KC_KP_0, KC_PDOT, KC_BSPC, \
-       KC_B, KC_KP_4, KC_KP_5, KC_KP_6,    KC_E,  KC_COLN, KC_ASTR, KC_MINS, KC_PLUS, KC_PENT, \
-       KC_A, KC_KP_1, KC_KP_2, KC_KP_3,    KC_D,  KC_CAPS, TO_HXNP, TO_MEDA, OSL_SYM,  KC_NUM, \
-                      OSL_PNT, KC_KP_0, KC_PDOT,  OSL_NUM, OSL_SYM
+#define LAYOUT_LAYER_POINTER(f)                                                                \
+     KC_ESC, DPI_MOD, DRGSCRL, SNP_TOG, KC_WH_U,   KC_DEL, KC_WH_L, DRG_TOG, KC_WH_R, KC_BSPC, \
+     KC_TAB, ___HOME_ROW_MODS_ACS_L___, KC_WH_D,   KC_INS, KC_BTN1, KC_BTN2, KC_BTN3,  KC_ENT, \
+    KC_LGUI, f(LTOL), TO_SYMB, TO_PNTR, S_D_MOD,  ________________CLIPBOARD_R________________, \
+                      TO_PNTR, TO_ALPH, OSL_NV2,  TO_NUMB, TO_SYMB
+
 
 /**
  * \brief Tools layer.
