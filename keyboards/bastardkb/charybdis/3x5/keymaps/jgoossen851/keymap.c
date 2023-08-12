@@ -134,10 +134,10 @@ static uint16_t auto_pointer_layer_timer = 0;
  * `KC_DOT` is duplicated from the base layer.
  */
 #define LAYOUT_LAYER_NUMERAL                                                                   \
-     KC_ESC,    KC_7,    KC_8,    KC_9,  KC_EQL,   KC_DEL, KC_SLSH,    KC_0, KC_PDOT, KC_BSPC, \
-     KC_TAB,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_COLN, OSM_SFT, KC_RCTL, KC_LALT,  KC_ENT, \
+     KC_ESC,    KC_7,    KC_8,    KC_9,  KC_EQL,   KC_DEL, KC_SLSH,  KC_SPC, KC_PDOT, KC_BSPC, \
+     KC_TAB,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_COLN, ___HOME_ROW_MODS_ACS_R___,  KC_ENT, \
      KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS,  XXXXXXX, TO_NUMB, TO_NAVG, TO_NMPD, KC_RGUI, \
-                      OSL_PNT,    KC_0, KC_PDOT,  TO_NUMB, OSL_SYM
+                      OSL_PNT,    KC_0, OSL_NAV,  TO_NUMB, OSL_SYM
 
 
 /**
@@ -149,10 +149,10 @@ static uint16_t auto_pointer_layer_timer = 0;
  * work on this layer but Alt-codes can be used on Windows.
  */
 #define LAYOUT_LAYER_NUMPAD                                                                    \
-     KC_ESC, KC_KP_7, KC_KP_8, KC_KP_9, KC_PPLS,   KC_DEL, TG_HXPD, XXXXXXX, XXXXXXX, KC_BSPC, \
+     KC_ESC, KC_KP_7, KC_KP_8, KC_KP_9, KC_PPLS,   KC_DEL, TG_HXPD, KC_SPC,  KC_PDOT, KC_BSPC, \
      KC_TAB, KC_KP_4, KC_KP_5, KC_KP_6, KC_PMNS,  KC_COLN, ___HOME_ROW_MODS_ACS_R___, KC_PENT, \
     KC_PSLS, KC_KP_1, KC_KP_2, KC_KP_3, KC_PAST,   KC_NUM, TO_NMPD, TO_MEDA, OSL_SYM, KC_RGUI, \
-                      OSL_PNT, KC_KP_0, KC_PDOT,  OSL_NUM, OSL_SYM
+                      OSL_PNT, KC_KP_0, OSL_NAV,  OSL_NUM, OSL_SYM
 
 
 /**
