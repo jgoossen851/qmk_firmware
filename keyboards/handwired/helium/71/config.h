@@ -18,16 +18,18 @@
 #pragma once
 
 /* Handedness */
-#define SPLIT_HAND_MATRIX_GRID F7, C6
+#define SPLIT_HAND_MATRIX_GRID B5, F5 // Hold down the Blue Arrow when plugging in/flashing
 #define MATRIX_MASKED
 // Left Hand [Top 5 Rows] (LSB = outside key), Right Hand [Bottom 5 Rows]
 #define MATRIX_MASK { \
-    0b11111, \
-    0b11111, \
-    0b11111, \
-    0b11100, \
-    0b11111, \
-    0b11111, \
-    0b11111, \
-    0b11000, \
+    0b11111111, \
+    0b11111111, \
+    0b11111111, \
+    0b11111111, \
+    0b11111111, \
+    0b11111111, \
+    0b11111111, \
+    0b11111111, \
+    0b11111111, \
+    0b11111111, \
 }
