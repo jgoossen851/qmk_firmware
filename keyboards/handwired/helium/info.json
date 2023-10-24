@@ -1,0 +1,19 @@
+{
+    "keyboard_name": "Helium",
+    "maintainer": "Jeremy Goossen",
+    "manufacturer": "Helium",
+    "url": "https://qmk.fm/keyboards",
+    "bootloader_instructions": "Subject to Change: Short the RESET pin to ground after opening the case and referencing the microcontroller schematic",
+    "tags": ["split"],
+    "development_board": "promicro",
+    "usb": {
+        "vid": "0xBB59"
+    },
+    "diode_direction": "COL2ROW",
+    "split": {
+        "enabled": true,
+        "transport": {
+            "protocol": "serial"
+        }
+    }
+}
