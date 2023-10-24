@@ -18,7 +18,7 @@
 #pragma once
 
 /* Handedness */
-#define SPLIT_HAND_MATRIX_GRID B5, F5 // Hold down the Blue Arrow when plugging in/flashing
+#define SPLIT_HAND_MATRIX_GRID E6, F7 // Diode at matrix position [3, 3]
 #define MATRIX_MASKED
 // Left Hand [Top 5 Rows] (LSB = outside key), Right Hand [Bottom 5 Rows]
 #define MATRIX_MASK { \
