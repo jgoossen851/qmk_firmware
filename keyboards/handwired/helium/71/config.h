@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Jeremy Goossen (@jgoossen851)
+ * Copyright 2024 Jeremy Goossen (@jgoossen851)
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,18 +18,18 @@
 #pragma once
 
 /* Handedness */
-#define SPLIT_HAND_MATRIX_GRID E6, F7 // Diode at matrix position [3, 3]
+#define SPLIT_HAND_MATRIX_GRID E6, F7 // Diode at matrix position [2, 2]
 #define MATRIX_MASKED
-// Left Hand [Top 5 Rows] (LSB = outside key), Right Hand [Bottom 5 Rows]
+// Left Hand [Top 5 Rows] (LSB = leftmost key), Right Hand [Bottom 5 Rows]
 #define MATRIX_MASK { \
     0b11111111, \
+    0b11111011, \
+    0b11111011, \
+    0b11111111, \
+    0b01011111, \
     0b11111111, \
     0b11111111, \
-    0b11111111, \
-    0b11111111, \
-    0b11111111, \
-    0b11111111, \
-    0b11111111, \
-    0b11111111, \
-    0b11111111, \
+    0b10111111, \
+    0b10111111, \
+    0b10111010, \
 }

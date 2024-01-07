@@ -8,15 +8,22 @@ A split, 3D-printable row-staggered keyboard.
 * Hardware Supported: Helium 71
 * Hardware Availability: None
 
-    sudo usermod -aG dialout $(whoami)
+```bash
+# Add the current user to the `dialout` group
+sudo usermod -aG dialout $(whoami)
+```
 
 Make example for this keyboard (after setting up your build environment):
 
-    qmk compile -kb handwired/helium/71 -km default
+```bash
+qmk compile -kb handwired/helium/71 -km default
+```
 
 Flashing example for this keyboard:
 
-    qmk flash -kb handwired/helium/71 -km default
+```bash
+qmk flash -kb handwired/helium/71 -km default
+```
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
