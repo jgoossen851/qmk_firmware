@@ -21,3 +21,33 @@
 #define CAPS_WORD_IDLE_TIMEOUT 5000  // 5 seconds
 
 #define SOFTWARE_DVORAK_MAPPING 1 // QWERTY-to-DVORAK done by OS
+
+/**
+ * \brief Configure the global tapping term (default: 200ms).
+ *
+ * If you have a lot of accidental mod activations, crank up the tapping term.
+ *
+ * See docs.qmk.fm/#/tap_hold?id=tapping-term
+ */
+#define TAPPING_TERM 200
+
+/**
+ * \brief Enable auto-repeat on mod-taps by holding key after quick tap.
+ *
+ * Set to zero to completely disable auto-repeat.
+ *
+ * See docs.qmk.fm/#/tap_hold?id=quick-tap-term
+ */
+#define QUICK_TAP_TERM 120
+
+/**
+ * \brief Faster tap-hold trigger.
+ *
+ * Without `PERMISSIVE_HOLD`, within `TAPPING_TERM`:
+ *   Mod(a)🠗 e🠗 e🠕 Mod(a)🠕 ➞ ae
+ * With `PERMISSIVE_HOLD`, within `TAPPING_TERM`:
+ *   Mod(a)🠗 e🠗 e🠕 Mod(a)🠕 ➞ Mod+e
+ *
+ * See docs.qmk.fm/#/tap_hold?id=permissive-hold
+ */
+#define PERMISSIVE_HOLD
