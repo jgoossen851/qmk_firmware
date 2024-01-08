@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├────────┼────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┼────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┤
       XXXXXXX,      KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_LBRC, KC_RBRC,      KC_BSLS,
   // ├────────┼────────────┴──┬─────┴──┬─────┴──┬─────┴──┬─────┴──┬─────┴──╮ ╰──┬─────┴──┬─────┴──┬─────┴──┬─────┴──┬─────┴──┬─────┴──┬─────┴─────────────┤
-      XXXXXXX,        KC_CAPS,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,             KC_ENT,
+      XXXXXXX,        CW_TOGG,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,             KC_ENT,
   // ├────────┼────────┬──────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───╮╰───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴──────────┬────────┤
       XXXXXXX,   RIGHT,   KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,        KC_RSFT,    LEFT,
   // ├────────┼────────┴─┬────────┴─┬──────┴───┬────┴─────┬──┴────────┴────────┤    ├────────┴────────┴───────┬┴────────┴┬───────┴──┬──────────┬─┴────────┤
@@ -91,3 +91,51 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 // clang-format on
+
+/* Caps Word */
+#ifdef CAPS_WORD_ENABLE
+
+void caps_word_set_user(bool active) {
+    if (active) {
+        // Do something when Caps Word activates.
+    } else {
+        // Do something when Caps Word deactivates.
+    }
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+#if SOFTWARE_DVORAK_MAPPING
+        // E,Q,W,Z map to punctuation, and should be excluded
+        case KC_A ... KC_D:
+        case KC_F ... KC_P:
+        case KC_R ... KC_V:
+        case KC_X ... KC_Y:
+        // ,./; map to letters and should be included
+        case KC_COMM:
+        case KC_DOT:
+        case KC_SLSH:
+        case KC_SCLN:
+        // ' maps to hyphen and should be included for underscores
+        case KC_QUOT:
+#else
+        case KC_A ... KC_Z:
+        case KC_MINS:
+#endif
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_KP_1 ... KC_KP_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
+#endif // CAPS_WORD_ENABLE

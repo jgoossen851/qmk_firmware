@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Jeremy Goossen (@jgoossen851)
+ * Copyright 2024 Jeremy Goossen (@jgoossen851)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,3 +16,8 @@
  */
 
 #pragma once
+
+#define CAPS_WORD_INVERT_ON_SHIFT
+#define CAPS_WORD_IDLE_TIMEOUT 5000  // 5 seconds
+
+#define SOFTWARE_DVORAK_MAPPING 1 // QWERTY-to-DVORAK done by OS
