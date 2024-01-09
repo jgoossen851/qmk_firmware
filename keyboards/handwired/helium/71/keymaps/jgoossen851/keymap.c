@@ -45,6 +45,12 @@ enum helium_keymap_layers {
 #define LEFT  MO(LAYER_LEFT)
 #define RIGHT MO(LAYER_RIGHT)
 
+#if SOFTWARE_DVORAK_MAPPING
+#  define DV_COLN RSFT(KC_Z)
+#else
+#  define DV_COLN KC_COLN
+#endif
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // BASE LAYER (the 5 leftmost keys are optional and can be set in custom layout)
@@ -80,13 +86,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // NUMBER PAD
   [LAYER_LEFT] = LAYOUT(
   // ╭────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────╮    ╭────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────╮
-      XXXXXXX,  KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSLS, KC_PAST, KC_PMNS,      QK_BOOT,  EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX,  KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSLS, KC_PAST, KC_PMNS,      QK_BOOT,  EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
   // ├────────┼────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┼────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┤
       XXXXXXX,      KC_TAB, XXXXXXX,   KC_P7,   KC_P8,   KC_P9, KC_PPLS,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,
   // ├────────┼────────────┴──┬─────┴──┬─────┴──┬─────┴──┬─────┴──┬─────┴──╮ ╰──┬─────┴──┬─────┴──┬─────┴──┬─────┴──┬─────┴──┬─────┴──┬─────┴─────────────┤
-      XXXXXXX,        KC_PENT, XXXXXXX,   KC_P4,   KC_P5,   KC_P6, KC_PEQL,      XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, XXXXXXX,            XXXXXXX,
+      XXXXXXX,        KC_PENT, XXXXXXX,   KC_P4,   KC_P5,   KC_P6, KC_PEQL,      XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, XXXXXXX,             KC_ENT,
   // ├────────┼────────┬──────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───╮╰───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴──────────┬────────┤
-      XXXXXXX, XXXXXXX,   KC_LSFT, XXXXXXX,   KC_P1,   KC_P2,   KC_P3, XXXXXXX,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        KC_RSFT, _______,
+      XXXXXXX, XXXXXXX,   KC_LSFT, XXXXXXX,   KC_P1,   KC_P2,   KC_P3, DV_COLN,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        KC_RSFT, _______,
   // ├────────┼────────┴─┬────────┴─┬──────┴───┬────┴─────┬──┴────────┴────────┤    ├────────┴────────┴───────┬┴────────┴┬───────┴──┬──────────┬─┴────────┤
       XXXXXXX,   KC_RCTL,   KC_LGUI,   KC_LALT,   KC_PDOT,               KC_P0,                       XXXXXXX,   KC_LALT,   KC_LGUI,    KC_APP,   KC_RCTL
   // ╰────────┴──────────┴──────────┴──────────┴──────────┴────────────────────╯    ╰─────────────────────────┴──────────┴──────────┴──────────┴──────────╯
