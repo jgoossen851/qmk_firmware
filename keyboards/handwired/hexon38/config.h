@@ -4,14 +4,6 @@
 
 #include "config_common.h"
 
-/* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x6060
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    pepaslabs
-#define PRODUCT         hexon38
-#define DESCRIPTION     "A handmade non-split ergonomic 38-key keyboard, inspired by the lil38.  See https://github.com/pepaslabs/hexon38."
-
 /* key matrix size */
 #define MATRIX_ROWS 4
 #define MATRIX_COLS 12

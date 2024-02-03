@@ -6,14 +6,6 @@
 
 #include "config_common.h"
 
-/* USB Device descriptor parameter */
-#define VENDOR_ID       0xDEAD
-#define PRODUCT_ID      0x6585
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    astro
-#define PRODUCT         smk 60
-#define DESCRIPTION     60% keyboard for smk switch
-
 /* key matrix size */
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 15
@@ -41,8 +33,6 @@
 //#define NO_ACTION_LAYER
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
-//#define NO_ACTION_MACRO
-//#define NO_ACTION_FUNCTION
 
 //rgb light setting
 #define RGBLED_NUM      4

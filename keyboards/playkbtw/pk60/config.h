@@ -1,15 +1,6 @@
-#ifndef CONFIG_H
-#define CONFIG_H
+#pragma once
 
 #include "config_common.h"
-
-/* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x6060
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    Play Keyboard
-#define PRODUCT         pk60
-#define DESCRIPTION     A 60% keyboard PCB
 
 /* key matrix size */
 #define MATRIX_ROWS 5
@@ -22,6 +13,9 @@
 
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
+
+#define LED_CAPS_LOCK_PIN F4
+#define LED_PIN_ON_STATE 0
 
 /* number of backlight levels */
 #define BACKLIGHT_PIN B7
@@ -45,6 +39,4 @@
 #define RGBLIGHT_HUE_STEP 8
 #define RGBLIGHT_SAT_STEP 8
 #define RGBLIGHT_VAL_STEP 8
-#endif
-
 #endif

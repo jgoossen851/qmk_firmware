@@ -18,14 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-/* USB Device descriptor parameter */
-#define VENDOR_ID       0x0F6A
-#define PRODUCT_ID      0x01B8
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    sakuranbo0046
-#define PRODUCT         yosino58
-#define DESCRIPTION     yosino58 is 6x4+5keys column-staggered split keyboard.
-
 /* key matrix size */
 // Rows are doubled-up
 #define MATRIX_ROWS 10
@@ -68,5 +60,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_LAYER
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
-//#define NO_ACTION_MACRO
-//#define NO_ACTION_FUNCTION

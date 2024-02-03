@@ -2,13 +2,6 @@
 
 #include "config_common.h"
 
-/* USB Device descriptor parameter */
-#define VENDOR_ID       0x445A  // "DZ"
-#define PRODUCT_ID      0x2260
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    KBDFans
-#define PRODUCT         DZ60
-
 /* key matrix size */
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 15
@@ -29,6 +22,9 @@
 
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
+
+#define LED_CAPS_LOCK_PIN B2
+#define LED_PIN_ON_STATE 0
 
 #define BACKLIGHT_PIN B6
 #define BACKLIGHT_LEVELS 5

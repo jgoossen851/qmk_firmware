@@ -2,14 +2,6 @@
 
 #include "config_common.h"
 
-/* USB Device descriptor parameter */
-#define VENDOR_ID       0x4B4B
-#define PRODUCT_ID      0x0003
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    TheRoyalSweatshirt
-#define PRODUCT         Liminal
-#define DESCRIPTION     "A 50% keyboard with focused around spectacular keycap compatibility."
-
 /* key matrix size */
 #define MATRIX_ROWS 4
 #define MATRIX_COLS 14
